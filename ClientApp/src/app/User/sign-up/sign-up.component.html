@@ -1,0 +1,61 @@
+<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+    <h1 class="display-4 fw-normal text-body-emphasis">Üyelik Paketleri</h1>
+    <p class="fs-5 text-body-secondary">Daha iyi bir hizmet için paketlerimizi inceleyin.</p>
+  </div>
+<main>
+  <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal">Ücretsiz</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">0 TL<small class="text-body-secondary fw-light">/ayda</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Sadece 5 adet sorgulama hakkı</li>
+            <li>Mail önceliği bulunmaz.</li>
+            <li>Yardım merkezi erişimi</li>
+          </ul>
+          <button (click)="toggleKayitFormuGoster(0)" type="button" class="free w-100 btn btn-lg btn-outline-primary">Ücretsiz Kayıt Ol</button>
+          <app-registration-form *ngIf="showFormService.kayitFormuGoster[0]"></app-registration-form>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm">
+        <div class="card-header py-3">
+          <h4 class="my-0 fw-normal">Normal</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">49.99 TL <small class="text-body-secondary fw-light">/ayda</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>100 adet sorgulama hakkı</li>
+            <li>Mailleriniz önceliklendirilir.</li>
+            <li>Yardım merkezi erişimi</li>
+          </ul>
+          <button type="button" (click)="toggleKayitFormuGoster(1)" class="normal w-100 btn btn-lg btn-primary">Kayıt Ol</button>
+          <app-registration-form *ngIf="showFormService.kayitFormuGoster[1]"></app-registration-form>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card mb-4 rounded-3 shadow-sm border-primary">
+        <div class="card-header py-3 text-bg-primary border-primary">
+          <h4 class="my-0 fw-normal">Profesyonel</h4>
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title">199.99 TL<small class="text-body-secondary fw-light">/ayda</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>Sınırsız sorgulama hakkı</li>
+            <li>Telefon ve mailleriniz önceliklendirilir.</li>
+            <li>Yardım merkezi erişimi</li>
+          </ul>
+          <button (click)="toggleKayitFormuGoster(2)" type="button" class="prof w-100 btn btn-lg btn-primary">Kayıt Ol</button>
+          <app-registration-form *ngIf="showFormService.kayitFormuGoster[2]"></app-registration-form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
