@@ -1,1 +1,50 @@
-<p>query-screen works!</p>
+<body>
+    <div class="head">
+    <h2>MOBİL HABERLEŞME PROTOKOLÜ SORGULAMA</h2>
+    </div>
+    <div class="description">
+    <p>Hoş geldiniz, <br> Akıllı sayacınıza uygun protokolü öğrenebilmek için lütfen aşağıdaki bilgileri eksiksiz ve doğru bir şekilde doldurunuz.
+    </p> 
+    </div>
+<div class="container">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="question1">Akıllı sayacın bulunduğu yerin coğrafi özellikleri:</label> <br>
+      <select class="form-select form-select-md mb-9" formControlName="question1">
+        <option value="" disabled selected>Lütfen seçiniz</option>
+        <option *ngFor="let option of question1answers" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="question2">Akıllı sayacın bulunduğu yerin yerleşim planı:</label><br>
+      <select  class="form-select form-select-md mb-9" formControlName="question1">
+        <option value="" disabled selected>Lütfen seçiniz</option>
+        <option *ngFor="let option of question2answers" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="question3"> Akıllı sayacın bulunduğu bina mimarisi özellikleri: </label><br>
+      <select class="form-select form-select-md mb-9" formControlName="question1">
+        <option value="" disabled selected>Lütfen seçiniz</option>
+        <option *ngFor="let option of question3answers" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="question4">Veri iletim sıklığı:</label><br>
+      <select class="form-select form-select-md mb-9" formControlName="question1">
+        <option value="" disabled selected>Lütfen seçiniz</option>
+        <option *ngFor="let option of question4answers" [value]="option">{{ option }}</option>
+      </select>
+    </div>
+    <br><br>
+    <div class="button">
+        <input class="btn btn-success btn-lg" type="submit" value="Sorgula">
+    </div>
+  </form>
+  <div></div>
+  <div></div>
+</div>
+</body>
