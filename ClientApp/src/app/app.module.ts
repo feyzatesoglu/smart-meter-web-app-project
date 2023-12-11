@@ -11,6 +11,8 @@ import { NavMenuComponent } from './NavMenu/nav-menu/nav-menu.component';
 import { QueryScreenComponent } from './User/query-screen/query-screen.component';
 import { ContactComponent } from './User/contact/contact.component';
 import { RegistrationFormComponent } from './User/registration-form/registration-form.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { AccountService } from './Services/account.service';
 
 @NgModule({
   declarations: [
@@ -21,14 +23,15 @@ import { RegistrationFormComponent } from './User/registration-form/registration
     NavMenuComponent,
     QueryScreenComponent,
     ContactComponent,
-    RegistrationFormComponent
+    RegistrationFormComponent,
+    AdminPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

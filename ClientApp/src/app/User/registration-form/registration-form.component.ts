@@ -7,4 +7,6 @@ import { ShowFormService } from 'src/app/Services/show-form.service';
 })
 export class RegistrationFormComponent {
   constructor(public showFormService:ShowFormService){}
+  userData: any = {}; // Kullanıcı bilgilerini tutacak nesne
+
 }

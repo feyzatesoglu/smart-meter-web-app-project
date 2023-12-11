@@ -1,7 +1,18 @@
 .container{
     text-align:center;
 }
+.text{
+    padding: 5px;
+    text-align: left;
+    text-decoration: underline;
+    font-size: small;
+    color: blue;
+}
+.form-check-label{
+    text-align: left;
+}
 i{
     width: 100px;
     color:black;
+
 }
