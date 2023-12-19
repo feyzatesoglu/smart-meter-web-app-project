@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SmartWebAppAPI.Repositories;
 
@@ -28,5 +28,7 @@ namespace SmartWebAppAPI.Controllers
             return Ok(users); // Tüm kullanıcı verilerini JSON formatında dön
         }
 
-    }
+  
+
+  }
 }

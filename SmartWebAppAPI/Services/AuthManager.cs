@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SmartWebAppAPI.Entity.Dto;
 using SmartWebAppAPI.Entity.Models;
@@ -18,26 +18,36 @@ namespace SmartWebAppAPI.Services
             _mapper = mapper;
         }
 
-       
-        public void CreateUser(RegisterDto registerDto)
-        {
-            // AutoMapper ile RegisterDto'dan User nesnesine dönüşüm yapılıyor
-            var user = _mapper.Map<User>(registerDto);
 
-            // Kullanıcı için şifre ve tuz oluşturuluyor
-            byte[] passwordSalt = GeneratePasswordSalt();
-            byte[] passwordHash = EncryptPassword(registerDto.Password, passwordSalt);
+    public void CreateUser(RegisterDto registerDto)
+    {
+      // AutoMapper ile RegisterDto'dan User nesnesine dönüşüm yapılıyor
+      var user = _mapper.Map<User>(registerDto);
 
-            // Oluşturulan şifre ve tuz User nesnesine atanıyor
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
-            user.CreatedDate = DateTime.UtcNow;
+      // Kullanıcı için şifre ve tuz oluşturuluyor
+      byte[] passwordSalt = GeneratePasswordSalt();
+      byte[] passwordHash = EncryptPassword(registerDto.Password, passwordSalt);
 
-            _manager.AuthRepository.Add(user);
-            _manager.Save();
-        }
+      user.PasswordHash = passwordHash;
+      user.PasswordSalt = passwordSalt;
+      user.CreatedDate = DateTime.UtcNow;
+     
+      
+      var defaultUserType = _manager.AuthTypeRepository.GetTypeIdByName(registerDto.UserType);
+      var defaultUserRoleId = _manager.AuthRoleRepository.GetRoleIdByName(registerDto.Role);
 
-        public User? GetOneUserbyEmail(string email, bool trackChanges)
+   
+      
+      user.UserTypeId = defaultUserType ?? 1; // Varsayılan bir ID
+      user.RoleId = defaultUserRoleId ?? 1; // Varsayılan bir ID
+
+      _manager.AuthRepository.Add(user);
+      _manager.Save();
+    }
+
+    
+
+    public User? GetOneUserbyEmail(string email, bool trackChanges)
         {
             var product = _manager.AuthRepository.GetOneUser(email, trackChanges);     
             return product;

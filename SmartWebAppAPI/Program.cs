@@ -7,6 +7,7 @@ using SmartWebAppAPI.Repositories;
 using SmartWebAppAPI.Services;
 using SmartWebAppAPI.Validators.AuthValidators;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,15 +17,17 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<RepositoryContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllers()
-        .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<AuthValidationRegister>());
 builder.Services.AddControllers();
+builder.Services.AddControllers()
+  .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterValidation>());
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IAuthTypeRepository, AuthTypeRepository>();
+builder.Services.AddScoped<IAuthRoleRepository, AuthRoleRepository>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<IAuthService,AuthManager>();
 

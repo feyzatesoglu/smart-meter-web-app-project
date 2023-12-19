@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using SmartWebAppAPI.Entity.Dto;
 using SmartWebAppAPI.Entity.Models;
 
@@ -9,5 +9,6 @@ namespace SmartWebAppAPI.Services
 
         void CreateUser(RegisterDto registerDto);
         User? GetOneUserbyEmail(string email, bool trackChanges);
+     
     }
 }

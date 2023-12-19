@@ -1,4 +1,4 @@
-﻿using SmartWebAppAPI.Entity.Models;
+using SmartWebAppAPI.Entity.Models;
 using System.Linq.Expressions;
 
 namespace SmartWebAppAPI.Repositories
@@ -8,7 +8,9 @@ namespace SmartWebAppAPI.Repositories
 
         void Register(User user);
         User? GetOneUser(string email, bool trackChanges);
+        
 
-
-    }
+   
+    
+  }
 }

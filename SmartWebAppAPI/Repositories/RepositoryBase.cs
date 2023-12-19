@@ -1,4 +1,4 @@
-﻿
+
 
 
 
@@ -22,19 +22,15 @@ namespace SmartWebAppAPI.Repositories
             _context.Set<T>().Add(entity);
         }
 
-        public T? FindById(Expression<Func<T, bool>> expression, bool trackChanges)
-        {
-            return trackChanges
-                ? _context.Set<T>().Where(expression).SingleOrDefault()
-                : _context.Set<T>().Where(expression).AsNoTracking().SingleOrDefault();
-        }
-        public T? FindByEmail(Expression<Func<T, bool>> expression, bool trackChanges)
-        {
-            return trackChanges
-                ? _context.Set<T>().Where(expression).SingleOrDefault()
-                : _context.Set<T>().Where(expression).AsNoTracking().SingleOrDefault();
-        }
-
       
+
+    public T? FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
+    {
+      return trackChanges
+               ? _context.Set<T>().Where(expression).SingleOrDefault()
+               : _context.Set<T>().Where(expression).AsNoTracking().SingleOrDefault();
     }
+
+   
+  }
 }
