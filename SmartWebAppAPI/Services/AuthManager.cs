@@ -167,5 +167,37 @@ namespace SmartWebAppAPI.Services
       return false;
     }
 
+
+    public void ForgetPassword(ForgetPasswordDto forgetPasswordDto)
+    {
+      // Implement your logic here for password recovery
+      // For example, you can send a password reset link to the user's email
+      // or generate a temporary password and send it to the user
+      
+      // Example implementation:
+      var user = _manager.AuthRepository.GetOneUserbyEmail(forgetPasswordDto.email, trackChanges: false);
+      
+      if (user != null)
+      {
+        // Generate a temporary password
+      
+        
+        // Update the user's password with the temporary password
+        byte[] passwordSalt = GeneratePasswordSalt();
+        byte[] passwordHash = EncryptPassword(forgetPasswordDto.password, passwordSalt);
+        
+        user.PasswordHash = passwordHash;
+        user.PasswordSalt = passwordSalt;
+        
+        _manager.AuthRepository.UpdateOneUser(user);
+        _manager.Save();
+        
+        
+      }
+      else
+      {
+        
+      }
+    }
   }
 }

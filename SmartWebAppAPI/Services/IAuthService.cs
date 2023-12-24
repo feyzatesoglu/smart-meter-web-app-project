@@ -14,7 +14,7 @@ namespace SmartWebAppAPI.Services
         IEnumerable<User> GetAllUsers();
 
         void DeleteUser(int id);
-
+void ForgetPassword(ForgetPasswordDto forgetPasswordDto);
     
     UpdateDto? GetUserByIdForUpdate(int id);
     void UpdateUser(UpdateDto updateDto);

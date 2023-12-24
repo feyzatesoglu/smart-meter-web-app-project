@@ -109,10 +109,18 @@ namespace SmartWebAppAPI.Controllers
 
       return BadRequest("Failed to update password. Please check your credentials.");
     }
+
+
+    //forget password
+    [HttpPost("forget-password")] 
+    public IActionResult ForgetPassword([FromBody]ForgetPasswordDto forgetPasswordDto)
+    {
+      _manager.AuthService.ForgetPassword(forgetPasswordDto);
+      return Ok("başarıyla değiştirildi");
   }
 
      
-    }
+    }}
 
 
 
