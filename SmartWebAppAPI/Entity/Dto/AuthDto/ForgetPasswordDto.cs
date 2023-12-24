@@ -1,6 +1,6 @@
 namespace SmartWebAppAPI.Entity.Dto.AuthDto
 {
-  public class ForgetPassword
+  public class ForgetPasswordDto
   {
 
     public string email { get; set; }
