@@ -1,11 +1,11 @@
 
 using AutoMapper;
-using SmartWebAppAPI.Entity.Dto;
+using SmartWebAppAPI.Entity.Dto.AuthDto;
 using SmartWebAppAPI.Entity.Models;
 
 namespace SmartWebAppAPI.Infrastructure.Mapper
 {
-    public class MappingProfile : Profile
+  public class MappingProfile : Profile
     {
 
        public MappingProfile() {
@@ -15,7 +15,11 @@ namespace SmartWebAppAPI.Infrastructure.Mapper
        .ForMember(dest => dest.Role, opt => opt.Ignore())
        .ReverseMap();
 
-
+      CreateMap<User, LoginDto>();
+      CreateMap<UpdateDto, User>()
+       .ForMember(dest => dest.UserType, opt => opt.Ignore())
+       .ForMember(dest => dest.Role, opt => opt.Ignore())
+       .ReverseMap();
 
     }
 

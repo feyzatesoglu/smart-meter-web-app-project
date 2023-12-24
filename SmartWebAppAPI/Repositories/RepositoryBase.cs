@@ -22,7 +22,8 @@ namespace SmartWebAppAPI.Repositories
             _context.Set<T>().Add(entity);
         }
 
-      
+    public IQueryable<T> FindAll(bool trackChanges)=>_context.Set<T>().AsNoTracking();
+    
 
     public T? FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges)
     {
@@ -31,6 +32,16 @@ namespace SmartWebAppAPI.Repositories
                : _context.Set<T>().Where(expression).AsNoTracking().SingleOrDefault();
     }
 
-   
+    public void Remove(T entity)
+    {
+      _context.Set<T>().Remove(entity);
+
+      
+    }
+
+    public void Update(T entity)
+    {
+      _context.Set<T>().Update(entity);
+    }
   }
 }

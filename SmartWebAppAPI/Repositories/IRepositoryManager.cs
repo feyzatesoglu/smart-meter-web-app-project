@@ -7,6 +7,8 @@ namespace SmartWebAppAPI.Repositories
     IAuthRoleRepository AuthRoleRepository { get; }
     IAuthTypeRepository AuthTypeRepository { get; }
 
+ 
+
 
         void Save();
     }

@@ -1,12 +1,14 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using SmartWebAppAPI.Entity.Dto;
+using SmartWebAppAPI.Entity.Dto.AuthDto;
 using SmartWebAppAPI.Entity.Models;
 using SmartWebAppAPI.Repositories;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace SmartWebAppAPI.Services
 {
-    public class AuthManager : IAuthService
+  public class AuthManager : IAuthService
     {
 
         private readonly IRepositoryManager _manager;
@@ -49,8 +51,8 @@ namespace SmartWebAppAPI.Services
 
     public User? GetOneUserbyEmail(string email, bool trackChanges)
         {
-            var product = _manager.AuthRepository.GetOneUser(email, trackChanges);     
-            return product;
+            var user = _manager.AuthRepository.GetOneUserbyEmail(email, trackChanges);     
+            return user;
         }
 
         private byte[] EncryptPassword(string password, byte[] salt)
@@ -74,5 +76,96 @@ namespace SmartWebAppAPI.Services
             }
             return salt;
         }
+
+    public User?Login(string email, string password)
+    {
+      var user = _manager.AuthRepository.GetOneUserbyEmail(email, trackChanges: false);
+
+      if (user != null && VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+      {
+        return user;
+      }
+
+      return null;
     }
+
+    private bool VerifyPasswordHash(string password, byte[] storedHash, byte[] storedSalt)
+    {
+      using (var sha256 = System.Security.Cryptography.SHA256.Create())
+      {
+        var combinedPassword = System.Text.Encoding.UTF8.GetBytes(password + Convert.ToBase64String(storedSalt));
+        var hash = sha256.ComputeHash(combinedPassword);
+
+        // Hesaplanan hash ile saklanan hash eşleşiyorsa doğrulama başarılıdır.
+        return storedHash.SequenceEqual(hash);
+      }
+    }
+
+    public IEnumerable<User> GetAllUsers()
+    {
+      return _manager.AuthRepository.GetAllUsers(false);
+
+    }
+
+    public void DeleteUser(int id)
+    {
+      User user = _manager.AuthRepository.GetOneUserbyId(id, false);
+
+      if(user is not null){
+
+        _manager.AuthRepository.DeleteUser(user);
+        _manager.Save();
+      }
+    }
+
+    public User? GetOneUserbyId(int id, bool trackChanges)
+    {
+      var user = _manager.AuthRepository.GetOneUserbyId(id, trackChanges);
+      return user;
+    }
+
+
+
+    public UpdateDto? GetUserByIdForUpdate(int id)
+    {
+      var user = _manager.AuthRepository.GetOneUserbyId(id, trackChanges: false);
+      return _mapper.Map<UpdateDto>(user);
+    }
+
+    public void UpdateUser(UpdateDto updateDto)
+    {
+      var user = _manager.AuthRepository.GetOneUserbyId(updateDto.Id, trackChanges: true);
+
+      if (user == null)
+      {
+        // User not found logic
+        return;
+      }
+
+      _mapper.Map(updateDto, user);
+      _manager.AuthRepository.UpdateOneUser(user);
+      _manager.Save();
+    }
+    public bool UpdatePassword(UpdatePasswordDto updatePasswordDto)
+    {
+      var user = _manager.AuthRepository.GetOneUserbyId(updatePasswordDto.UserId,false);
+
+      if (user != null && VerifyPasswordHash(updatePasswordDto.OldPassword, user.PasswordHash, user.PasswordSalt))
+      {
+        byte[] passwordSalt = GeneratePasswordSalt();
+        byte[] passwordHash = EncryptPassword(updatePasswordDto.NewPassword, passwordSalt);
+
+        user.PasswordHash = passwordHash;
+        user.PasswordSalt = passwordSalt;
+
+        _manager.AuthRepository.UpdateOneUser(user);
+        _manager.Save();
+
+        return true;
+      }
+
+      return false;
+    }
+
+  }
 }

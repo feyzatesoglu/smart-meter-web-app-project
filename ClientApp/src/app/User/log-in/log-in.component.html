@@ -30,33 +30,36 @@
         <div class="col-lg-6 mb-5 mb-lg-0">
           <div class="card">
             <div class="card-body py-5 px-md-5">
-              <form>
-                <!-- Email input -->
+              <form (ngSubmit)="login()">
+                <!-- E-posta girişi -->
                 <div class="form-outline mb-4">
                   <input
                     type="email"
-                    id="form3Example3"
+                    id="emailInput"
                     class="form-control"
-                    placeholder="Eposta adresiniz"
+                    placeholder="E-posta adresiniz"
+                    [(ngModel)]="userLogin.email"
+                    name="email"
                   />
-                  <label class="form-label" for="form3Example3"></label>
+                  <label class="form-label" for="emailInput">E-posta Adresi</label>
                 </div>
-
-                <!-- Password input -->
+              
+                <!-- Şifre girişi -->
                 <div class="form-outline mb-6">
                   <input
                     type="password"
-                    id="form3Example4"
+                    id="passwordInput"
                     class="form-control"
                     placeholder="Şifreniz"
+                    [(ngModel)]="userLogin.password"
+                    name="password"
                   />
                   <div class="text">
                     <a href="#" class="text-decoration-none">Şifremi Unuttum</a>
                   </div>
-                  <label class="form-label" for="form3Example4"></label>
+                  <label class="form-label" for="passwordInput">Şifre</label>
                 </div>
-
-
+              
                 <!-- Checkbox -->
                 <div class="form-check d-flex justify-content-left mb-6">
                   <input
@@ -68,15 +71,16 @@
                   />
                   <label class="form-check-label" for="form2Example33">
                     Beni hatırla
-                  </label> <br><br>
+                  </label>
                 </div>
-
+              
                 <div class="container">
                   <!-- Submit button -->
                   <button type="submit" class="btn btn-primary btn-block mb-4">
                     Giriş Yap
                   </button>
                 </div>
+              
                 <div class="text">
                   <a href="#" class="text-decoration-none">Hesabın yok mu? Hemen kayıt ol!</a>
                 </div>

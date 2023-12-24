@@ -1,5 +1,5 @@
 using FluentValidation;
-using SmartWebAppAPI.Entity.Dto;
+using SmartWebAppAPI.Entity.Dto.AuthDto;
 
 namespace SmartWebAppAPI.Validators.AuthValidators
 {

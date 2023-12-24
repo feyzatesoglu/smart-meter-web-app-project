@@ -16,6 +16,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<RepositoryContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy("AllowSpecificOrigin",
+      builder => builder.WithOrigins("http://localhost:4200")
+          .AllowAnyMethod()
+          .AllowAnyHeader());
+});
 
 builder.Services.AddControllers();
 builder.Services.AddControllers()
@@ -28,6 +35,7 @@ builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAuthTypeRepository, AuthTypeRepository>();
 builder.Services.AddScoped<IAuthRoleRepository, AuthRoleRepository>();
+
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<IAuthService,AuthManager>();
 
@@ -44,7 +52,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("AllowSpecificOrigin");
 app.UseAuthorization();
 app.UseAuthentication();
 app.MapControllers();
