@@ -69,9 +69,9 @@ public IActionResult GetUsers()
     return Ok(users);
 }
 [HttpGet("GetType/{type}")]
-public IActionResult GetUsersByType()
+public IActionResult GetUsersByType(string type)
 {
-    var id=_manager.AuthService.GetRoleIdByName("type");
+    var id=_manager.AuthService.GetTypeById(type);
     var users = _manager.AuthService.GetUsersByCondition(p => p.UserTypeId.Equals(id));
     if (users == null || !users.Any())
     {
