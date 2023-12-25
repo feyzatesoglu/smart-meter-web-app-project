@@ -1,6 +1,7 @@
 
 using AutoMapper;
 using SmartWebAppAPI.Entity.Dto.AuthDto;
+using SmartWebAppAPI.Entity.Dto.Recommendation;
 using SmartWebAppAPI.Entity.Models;
 
 namespace SmartWebAppAPI.Infrastructure.Mapper
@@ -16,6 +17,8 @@ namespace SmartWebAppAPI.Infrastructure.Mapper
        .ReverseMap();
 
       CreateMap<User, LoginDto>();
+      CreateMap<RecommendationDto, Recommendation>().ReverseMap();
+
       CreateMap<UpdateDto, User>()
        .ForMember(dest => dest.UserType, opt => opt.Ignore())
        .ForMember(dest => dest.Role, opt => opt.Ignore())
