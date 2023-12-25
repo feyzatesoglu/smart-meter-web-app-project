@@ -1,0 +1,11 @@
+.card-header{
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    background-color: blue;
+    color: aliceblue;
+}
+.profileInfos{
+    padding:1rem;
+    font-size: medium;
+}
