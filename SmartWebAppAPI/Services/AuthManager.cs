@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SmartWebAppAPI.Entity.Dto.AuthDto;
 using SmartWebAppAPI.Entity.Models;
 using SmartWebAppAPI.Repositories;
+using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -198,6 +199,23 @@ namespace SmartWebAppAPI.Services
       {
         
       }
+    }
+      
+      public int? GetRoleIdByName(string roleName)
+      {
+        return _manager.AuthRoleRepository.GetRoleIdByName(roleName);
+      }
+
+public int? GetTypeById(string type)
+{
+  return _manager.AuthTypeRepository.GetTypeIdByName(type);
+}
+
+
+     
+      public IQueryable<User> GetUsersByCondition(Expression<Func<User, bool>> condition)
+    {
+        return _manager.AuthRepository.GetUsersByCondition(condition);
     }
   }
 }
