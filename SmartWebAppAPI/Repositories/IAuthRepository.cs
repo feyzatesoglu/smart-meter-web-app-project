@@ -1,14 +1,18 @@
-﻿using SmartWebAppAPI.Entity.Models;
+using SmartWebAppAPI.Entity.Models;
 using System.Linq.Expressions;
 
 namespace SmartWebAppAPI.Repositories
 {
-    public interface IAuthRepository :IRepositoryBase<User>
-    {
+  public interface IAuthRepository : IRepositoryBase<User>
+  {
 
-        void Register(User user);
-        User? GetOneUser(string email, bool trackChanges);
+    void Register(User user);
+    User? GetOneUserbyEmail(string email, bool trackChanges);
+    User? GetOneUserbyId(int id, bool trackChanges);
+    void DeleteUser(User user);
 
+    IQueryable<User> GetAllUsers(bool trackChanges);
+    void UpdateOneUser(User user);
 
-    }
+  }
 }

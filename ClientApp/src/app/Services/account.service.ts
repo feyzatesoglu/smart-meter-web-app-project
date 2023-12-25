@@ -1,19 +1,26 @@
 import { Injectable } from '@angular/core';
-import { User } from '../User/log-in/user';
+import {  UserLogin } from '../models/UserLogin';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-loggedIn=false;
-login(user:User):boolean{
-  if(user.userName=="feyza"&& user.password=="12345"){
-    return true;
-    this.loggedIn=true;
-    localStorage.setItem("isLogged",user.userName);
+
+
+  private apiUrl = 'https://localhost:7069/api/Auth'; // Web API adresi
+
+  constructor(private http: HttpClient) {}
+
+  registerUser(userData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/register`, userData);
   }
-  return false;
+loggedIn=false;
+login(userLogin: UserLogin): Observable<any> {
+  return this.http.post<any>(`${this.apiUrl}/login`, userLogin);
 }
+
 
 isLoggedIn(){
   return this.loggedIn;

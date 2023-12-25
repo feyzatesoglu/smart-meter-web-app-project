@@ -11,13 +11,15 @@ namespace SmartWebAppAPI.Repositories
 
 
         void Add(T entity);
+         T? FindByCondition(Expression<Func<T, bool>> expression, bool trackChanges);
+
+         IQueryable<T>FindAll(bool trackChanges);
+
+         void Remove(T entity);
+          void Update(T entity);
 
 
-        public T? FindById(Expression<Func<T, bool>> expression, bool trackChanges);
-
-        public T? FindByEmail(Expression<Func<T, bool>> expression, bool trackChanges);
-       
 
 
-    }
+  }
 }

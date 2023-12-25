@@ -1,36 +1,37 @@
 <div *ngIf="showFormService.kayitFormuGoster">
   <div class="wrapper">
     <h2>Kayıt Ol</h2>
-    <form action="#">
+    <form (ngSubmit)="onSubmit()">
       <div class="input-box">
-        <input type="text" name="name" placeholder="Adınız:" required />
+        <input type="text" name="firstName" placeholder="Adınız:" [(ngModel)]="userData.firstName" required />
       </div>
       <div class="input-box">
-        <input type="text" name="surname" placeholder="Soyadınız:" required />
+        <input type="text" name="lastName" placeholder="Soyadınız:" [(ngModel)]="userData.lastName" required />
       </div>
       <div class="input-box">
-        <input type="text" placeholder="Eposta adresiniz:" required />
+        <input type="email" name="email" placeholder="Eposta adresiniz:" [(ngModel)]="userData.email" required />
       </div>
       <div class="input-box">
-        <input type="password" placeholder="Şifre Oluşturunuz" required />
+        <input type="password" name="password" placeholder="Şifre Oluşturunuz" [(ngModel)]="userData.password" required />
       </div>
       <div class="input-box">
         <input
           type="password"
-          type="password"
+          name="confirmPassword"
           id="inputPassword5"
           class="form-control"
           aria-describedby="passwordHelpBlock"
           placeholder="Şifreyi Tekrar Yazınız"
+          [(ngModel)]="confirmPassword"
           required
         />
       </div>
       <div class="policy">
-        <input type="checkbox" />
+        <input type="checkbox" name="acceptTerms" [(ngModel)]="acceptterms" required />
         <h3>Tüm şartları ve koşulları kabul ediyorum.</h3>
       </div>
       <div class="input-box button">
-        <input type="Submit" value="Kayıt Ol" />
+        <input type="submit" value="Kayıt Ol" />
       </div>
       <div class="text">
         <h3>Zaten hesabınız var mı? <a href="#">Giriş Yap</a></h3>
