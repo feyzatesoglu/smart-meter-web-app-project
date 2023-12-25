@@ -3,6 +3,7 @@
 
 
 using System.Data.Entity;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace SmartWebAppAPI.Repositories
@@ -31,6 +32,8 @@ namespace SmartWebAppAPI.Repositories
                ? _context.Set<T>().Where(expression).SingleOrDefault()
                : _context.Set<T>().Where(expression).AsNoTracking().SingleOrDefault();
     }
+
+   
 
     public void Remove(T entity)
     {

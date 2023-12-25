@@ -14,7 +14,7 @@ namespace SmartWebAppAPI.Controllers
       _manager = manager;
     }
 
-    [HttpGet("GetAllUser")]
+    [HttpGet("GetAll")]
         public IActionResult GetAllUsers()
         {
             var users = _manager.AuthService.GetAllUsers();
@@ -42,5 +42,44 @@ public IActionResult DeleteUser(int id)
 
     return Ok("delete successful");
 }
+
+[HttpGet("GetAdmins")]
+public IActionResult GetAdmins()
+{
+    var id=_manager.AuthService.GetRoleIdByName("Admin");
+    var users = _manager.AuthService.GetUsersByCondition(p => p.RoleId.Equals(id));
+    if (users == null || !users.Any())
+    {
+        return NotFound();
+    }
+
+    return Ok(users);
+}
+
+[HttpGet("GetUsers")]
+public IActionResult GetUsers()
+{
+    var id=_manager.AuthService.GetRoleIdByName("User");
+    var users = _manager.AuthService.GetUsersByCondition(p => p.RoleId.Equals(id));
+    if (users == null || !users.Any())
+    {
+        return NotFound();
+    }
+
+    return Ok(users);
+}
+[HttpGet("GetType/{type}")]
+public IActionResult GetUsersByType()
+{
+    var id=_manager.AuthService.GetRoleIdByName("type");
+    var users = _manager.AuthService.GetUsersByCondition(p => p.UserTypeId.Equals(id));
+    if (users == null || !users.Any())
+    {
+        return NotFound();
+    }
+
+    return Ok(users);
+}
+
   }
 }

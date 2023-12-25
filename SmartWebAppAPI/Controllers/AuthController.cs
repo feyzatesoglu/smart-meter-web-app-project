@@ -36,6 +36,7 @@ namespace SmartWebAppAPI.Controllers
                     // Kullanıcı zaten varsa hata döndür
                     return Conflict("User with this email already exists");
                 }
+                
 
                 _manager.AuthService.CreateUser(registerDto);
                 return Ok();

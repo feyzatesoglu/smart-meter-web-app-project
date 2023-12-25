@@ -6,6 +6,7 @@ using SmartWebAppAPI.Entity.Models;
 using SmartWebAppAPI.Repositories;
 using SmartWebAppAPI.Services;
 using SmartWebAppAPI.Validators.AuthValidators;
+using System.Text.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,7 +24,8 @@ builder.Services.AddCors(options =>
           .AllowAnyMethod()
           .AllowAnyHeader());
 });
-
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 builder.Services.AddControllers();
 builder.Services.AddControllers()
   .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterValidation>());

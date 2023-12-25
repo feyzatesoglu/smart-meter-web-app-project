@@ -1,4 +1,5 @@
 using SmartWebAppAPI.Entity.Models;
+using System.Linq.Expressions;
 using System.Xml.Linq;
 
 namespace SmartWebAppAPI.Repositories
@@ -27,9 +28,15 @@ namespace SmartWebAppAPI.Repositories
   
 
     public void Register(User user)=>Add(user);
-     public IQueryable<User> GetAllUsers(bool trackChanges) => FindAll(trackChanges);
+    public IQueryable<User> GetAllUsers(bool trackChanges) => FindAll(trackChanges);
 
     public void UpdateOneUser(User user)=>Update(user);
+
+      public IQueryable<User> GetUsersByCondition(Expression<Func<User, bool>> condition)
+    {
+        return GetAllUsers(false).Where(condition);
+    }
+
     
   }
 
