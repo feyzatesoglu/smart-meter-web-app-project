@@ -7,6 +7,7 @@ import { QueryScreenComponent } from './User/query-screen/query-screen.component
 import { ContactComponent } from './User/contact/contact.component';
 import { AuthGuard } from './User/log-in/login.guard';
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path:'anasayfa',redirectTo:'home',pathMatch:'full'},
   {path:'iletisim', component:ContactComponent},
   {path:'profil', component:UserProfileComponent}
+  {path:'admin', component:AdminPageComponent}
 ];
 
 @NgModule({

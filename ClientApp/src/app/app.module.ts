@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LogInComponent } from './User/log-in/log-in.component';
@@ -14,6 +14,8 @@ import { RegistrationFormComponent } from './User/registration-form/registration
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AccountService } from './Services/account.service';
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,11 @@ import { UserProfileComponent } from './User/user-profile/user-profile.component
     UserProfileComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]
