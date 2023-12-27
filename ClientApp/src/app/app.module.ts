@@ -13,12 +13,9 @@ import { ContactComponent } from './User/contact/contact.component';
 import { RegistrationFormComponent } from './User/registration-form/registration-form.component';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { AccountService } from './Services/account.service';
-<<<<<<< HEAD
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
-=======
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
->>>>>>> 620b2dcf8ccfe6545b19dea8a11710ec21e19647
 
 @NgModule({
   declarations: [
