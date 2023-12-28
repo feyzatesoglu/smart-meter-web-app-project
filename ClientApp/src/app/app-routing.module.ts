@@ -19,6 +19,7 @@ const routes: Routes = [
   {path:'iletisim', component:ContactComponent},
   {path:'profil', component:UserProfileComponent},
   {path:'admin', component:AdminPageComponent},
+  {path:'profil', component:UserProfileComponent}
 ];
 
 @NgModule({
