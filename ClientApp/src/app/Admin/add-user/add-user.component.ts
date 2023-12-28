@@ -10,7 +10,6 @@ export class AddUserComponent {
   model: any= {
   };  // two-way binding
 
-
   saveUser(){
    console.log(this.model);
  }
