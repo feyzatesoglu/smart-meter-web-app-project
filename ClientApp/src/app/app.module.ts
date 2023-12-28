@@ -11,11 +11,12 @@ import { NavMenuComponent } from './NavMenu/nav-menu/nav-menu.component';
 import { QueryScreenComponent } from './User/query-screen/query-screen.component';
 import { ContactComponent } from './User/contact/contact.component';
 import { RegistrationFormComponent } from './User/registration-form/registration-form.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
+import { AdminPageComponent } from './Admin/admin-page/admin-page.component';
 import { AccountService } from './Services/account.service';
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { AddUserComponent } from './Admin/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     ContactComponent,
     RegistrationFormComponent,
     AdminPageComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    AddUserComponent
   ],
   imports: [
     HttpClientModule,

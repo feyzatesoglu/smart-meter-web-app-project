@@ -1,1 +1,32 @@
-<p>admin-page works!</p>
+<body>
+    <header>
+      <h1>Yönetici Paneli</h1>
+    </header>
+    <nav>
+      <ul>
+        <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Kullanıcılar
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">Ücretsiz</a></li>
+          <li><a class="dropdown-item" href="#">Normal</a></li>
+          <li><a class="dropdown-item" href="#">Profesyonel</a></li>
+        </ul>
+        <li><a href="#addUser" routerLink="/kullanici-ekle">Kullanıcı Ekle</a></li>
+        <li><a href="#editUser">Kullanıcı Düzenle</a></li>
+        <li><a href="#deleteUser">Kullanıcı Sil</a></li>
+      </ul>
+    </nav>
+    <section id="users">
+      <h3>Kullanıcı Listesi</h3>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Ad</th>
+          <th>Soyad</th>
+          <th>E-posta</th>
+          <th>Tür</th>
+          <th>İşlemler</th>
+        </tr>
+        <!-- Buraya kullanıcı listesi gelecek -->
+      </table>

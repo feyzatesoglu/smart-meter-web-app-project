@@ -2,7 +2,11 @@
     text-align: center;
     font-size: large;
     font-weight: bold;
-    background-color: blue;
+    background-color: rgb(67, 67, 214);
+    color: aliceblue;
+}
+.btn{
+    background-color: rgb(67,67,214);
     color: aliceblue;
 }
 .profileInfos{

@@ -1,0 +1,41 @@
+<!-- add-user.component.html -->
+<div class="container mt-5">
+    <h2>Kişi Ekle</h2>
+        <form (ngSubmit)="saveUser()">
+          <div class="form-group">
+            <label for="name">Ad</label>
+            <input [(ngModel)]="model.name" type="text" class="form-control" id="username" name="username" placeholder="Ad" required>
+          </div>
+          <div class="form-group">
+            <label for="surname">Soyad</label>
+            <input [(ngModel)]="model.surname" type="text" class="form-control" id="username" name="username" placeholder="Soyad" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input [(ngModel)]="model.email" type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+            <label for="password">Şifre</label>
+            <input [(ngModel)]="model.password" type="password" class="form-control" id="password" name="password" placeholder="Şifre" required>
+          </div>
+          <div class="form-group" >
+            <label for="role">Rol</label>
+ <select [(ngModel)]="model.selectedRole" class="form-select" id="role" name="role" required>
+              <option value="">Rol seç</option>
+              <option value="admin">Admin</option>
+              <option value="user">Kullanıcı</option>
+            </select>
+          </div>
+          <div class="form-group" *ngIf="model.selectedRole !== 'admin'"  >
+            <label for="role">Kullanıcı tipi</label>
+            <select [(ngModel)]="model.type"  class="form-control" id="type" name="type" required>
+              <option value="">Kullanıcı tipi seç</option>
+              <option value="free">Ücretsiz</option>
+              <option value="normal">Normal</option>
+              <option value="professional">Profesyonel</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary">Kullanıcı ekle</button>
+        </form>
+  </div>
+  
