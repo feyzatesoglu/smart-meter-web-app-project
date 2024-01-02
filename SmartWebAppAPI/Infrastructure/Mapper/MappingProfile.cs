@@ -11,19 +11,11 @@ namespace SmartWebAppAPI.Infrastructure.Mapper
 
        public MappingProfile() {
 
-      CreateMap<RegisterDto, User>()
-       .ForMember(dest => dest.UserType, opt => opt.Ignore())
-       .ForMember(dest => dest.Role, opt => opt.Ignore())
-       .ReverseMap();
-
+      CreateMap<User, RegisterDto>().ReverseMap();
       CreateMap<User, LoginDto>();
       CreateMap<RecommendationDto, Recommendation>().ReverseMap();
 
-      CreateMap<UpdateDto, User>()
-       .ForMember(dest => dest.UserType, opt => opt.Ignore())
-       .ForMember(dest => dest.Role, opt => opt.Ignore())
-       .ReverseMap();
-
+     
     }
 
   }

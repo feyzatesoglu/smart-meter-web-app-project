@@ -1,65 +1,46 @@
 <header>
-    <nav
-      class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
-    >
-      <div class="container">
-        <a class="navbar-brand">SmartPro Teknoloji</a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target=".navbar-collapse"
-          aria-label="Toggle navigation"
-          [attr.aria-expanded]="isExpanded"
-          (click)="toggle()"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
-          [ngClass]="{ show: isExpanded }"
-        >
-          <ul class="navbar-nav flex-grow">
-            <li
-              class="nav-item"
-              [routerLinkActive]="['link-active']"
-              [routerLinkActiveOptions]="{ exact: true }"
-            >
-              <a class="nav-link text-dark" [routerLink]="['/anasayfa']">Anasayfa</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active'] ">
-              <a class="nav-link text-dark" [routerLink]="['/giris-yap']"
-                >Giriş Yap</a
-              >
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/uye-ol']"
-                >Üye Ol</a
-              >
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link']">
-              <a class="nav-link text-dark" [routerLink]="['/profil']"
-                >Hesabım</a
-              >
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link']">
-              <a class="nav-link text-dark" [routerLink]="['/admin']"
-                >Yönetici Paneli</a
-              >
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/sorgula']"
-                >Sorgula</a
-              >
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-              <a class="nav-link text-dark" [routerLink]="['/iletisim']"
-                >İletişim</a
-              >
-            </li>
-          </ul>
-        </div>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container">
+      <a class="navbar-brand">SmartPro Teknoloji</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target=".navbar-collapse"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="isExpanded"
+        (click)="toggle()"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item" [routerLinkActive]="['link-active']" [routerLinkActiveOptions]="{ exact: true }">
+            <a class="nav-link text-dark" [routerLink]="['/anasayfa']">Anasayfa</a>
+          </li>
+          <li class="nav-item" *ngIf="!isLoggedIn">
+            <a class="nav-link text-dark" [routerLink]="['/giris-yap']">Giriş Yap</a>
+          </li>
+          <li class="nav-item" *ngIf="!isLoggedIn">
+            <a class="nav-link text-dark" [routerLink]="['/uye-ol']">Üye Ol</a>
+          </li>
+          <li class="nav-item" *ngIf="isLoggedIn">
+            <a class="nav-link text-dark" [routerLink]="['/profil']">Hesabım</a>
+          </li>
+          <li class="nav-item" *ngIf="isLoggedIn && userRole === 'Admin'">
+            <a class="nav-link text-dark" [routerLink]="['/admin']">Yönetici Paneli</a>
+          </li>
+          <li class="nav-item" *ngIf="isLoggedIn && userRole === 'User'">
+            <a class="nav-link text-dark" [routerLink]="['/sorgula']">Sorgula</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-dark" [routerLink]="['/iletisim']">İletişim</a>
+          </li>
+          <li class="nav-item" *ngIf="isLoggedIn">
+            <a class="nav-link text-dark" (click)="logOut()">Çıkış Yap</a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </header>
-  
+    </div>
+  </nav>
+</header>
