@@ -48,3 +48,7 @@ body {
   th {
     background-color: #f4f4f4;
   }
+  .btn{
+    margin-right: 1rem;
+    width:100px;
+  }

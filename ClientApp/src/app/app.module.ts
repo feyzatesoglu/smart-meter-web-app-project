@@ -17,6 +17,7 @@ import { UserProfileComponent } from './User/user-profile/user-profile.component
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AddUserComponent } from './Admin/add-user/add-user.component';
+import { EditUserComponent } from './Admin/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AddUserComponent } from './Admin/add-user/add-user.component';
     RegistrationFormComponent,
     AdminPageComponent,
     UserProfileComponent,
-    AddUserComponent
+    AddUserComponent,
+    EditUserComponent
   ],
   imports: [
     HttpClientModule,

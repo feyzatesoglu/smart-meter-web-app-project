@@ -9,6 +9,7 @@ import { AuthGuard } from './User/log-in/login.guard';
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
 import { AdminPageComponent } from './Admin/admin-page/admin-page.component';
 import { AddUserComponent } from './Admin/add-user/add-user.component';
+import { EditUserComponent } from './Admin/edit-user/edit-user.component';
 import { LastQueriesScreenComponent } from './User/last-queries-screen/last-queries-screen.component';
 
 const routes: Routes = [
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path:'admin', component:AdminPageComponent},
   {path:'profil', component:UserProfileComponent},
   {path:'kullanici-ekle', component:AddUserComponent},
+  {path:'kullanici-duzenle', component:EditUserComponent},
   {path:'gecmis-sorgular', component:LastQueriesScreenComponent}
 ];
 
