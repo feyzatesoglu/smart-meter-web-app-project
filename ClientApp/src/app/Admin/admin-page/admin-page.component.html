@@ -13,7 +13,7 @@
           <li><a class="dropdown-item" href="#">Profesyonel</a></li>
         </ul>
         <li><a href="#addUser" routerLink="/kullanici-ekle">Kullanıcı Ekle</a></li>
-        <li><a href="#editUser">Kullanıcı Düzenle</a></li>
+        <li><a href="#editUser" routerLink="/kullanici-duzenle">Kullanıcı Düzenle</a></li>
         <li><a href="#deleteUser">Kullanıcı Sil</a></li>
       </ul>
     </nav>
@@ -28,5 +28,16 @@
           <th>Tür</th>
           <th>İşlemler</th>
         </tr>
-        <!-- Buraya kullanıcı listesi gelecek -->
+                <!-- Buraya kullanıcı listesi gelecek -->
+        <tr>
+          <td></td> <!--id-->
+          <td></td> <!--ad-->
+          <td></td> <!--soyad-->
+          <td></td> <!--email-->
+          <td></td> <!--kullanıcı türü-->
+          <td>
+            <button type="button" class="btn btn-primary" routerLink="/kullanici-duzenle">Düzenle</button>
+            <button type="button" class="btn btn-danger">Sil</button>
+          </td>
+        </tr>
       </table>
