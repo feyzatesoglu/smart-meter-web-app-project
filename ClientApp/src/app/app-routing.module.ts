@@ -11,6 +11,8 @@ import { AdminPageComponent } from './Admin/admin-page/admin-page.component';
 import { AddUserComponent } from './Admin/add-user/add-user.component';
 import { EditUserComponent } from './Admin/edit-user/edit-user.component';
 import { LastQueriesScreenComponent } from './User/last-queries-screen/last-queries-screen.component';
+import { ChangePasswordComponent } from './User/change-password/change-password.component';
+import { ForgetPasswordComponent } from './User/forget-password/forget-password.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -25,7 +27,9 @@ const routes: Routes = [
   {path:'profil', component:UserProfileComponent},
   {path:'kullanici-ekle', component:AddUserComponent},
   {path:'kullanici-duzenle', component:EditUserComponent},
-  {path:'gecmis-sorgular', component:LastQueriesScreenComponent}
+  {path:'gecmis-sorgular', component:LastQueriesScreenComponent},
+  {path:'sifre-degistir', component:ChangePasswordComponent},
+  {path:'sifremi-unuttum', component:ForgetPasswordComponent},
 ];
 
 @NgModule({

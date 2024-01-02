@@ -16,9 +16,9 @@ namespace SmartWebAppAPI.Entity.Models
     public DateTime? CreatedDate { get; set; }
 
 
-    public UserType? UserType { get; set; }
+    
     public int UserTypeId{ get; set; }
-    public UserRole? Role { get; set; }
+
     public int? RoleId { get; set; }
 
   }

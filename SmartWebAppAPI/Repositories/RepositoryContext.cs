@@ -17,15 +17,9 @@ namespace SmartWebAppAPI.Repositories
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
-      modelBuilder.Entity<User>()
-            .HasOne(u => u.UserType)
-            .WithMany(t => t.Users)
-            .HasForeignKey(u => u.UserTypeId);
+      
 
-      modelBuilder.Entity<User>()
-          .HasOne(u => u.Role)
-          .WithMany(r => r.Users)
-          .HasForeignKey(u => u.RoleId);
+      
 
       modelBuilder.Entity<UserType>()
           .HasKey(u => u.UserTypeId);

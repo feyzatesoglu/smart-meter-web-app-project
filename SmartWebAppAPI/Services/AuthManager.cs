@@ -34,15 +34,19 @@ namespace SmartWebAppAPI.Services
       user.PasswordHash = passwordHash;
       user.PasswordSalt = passwordSalt;
       user.CreatedDate = DateTime.UtcNow;
-     
-      
-      var defaultUserType = _manager.AuthTypeRepository.GetTypeIdByName(registerDto.UserType);
-      var defaultUserRoleId = _manager.AuthRoleRepository.GetRoleIdByName(registerDto.Role);
 
-   
       
-      user.UserTypeId = defaultUserType ?? 1; // Varsayılan bir ID
-      user.RoleId = defaultUserRoleId ?? 1; // Varsayılan bir ID
+        int? defaultUserType = _manager.AuthTypeRepository.GetTypeIdByName(registerDto.UserType);
+      int? defaultUserRoleId = _manager.AuthRoleRepository.GetRoleIdByName(registerDto.Role);
+
+
+      user.UserTypeId = defaultUserType ?? 0;
+      user.RoleId = defaultUserRoleId ?? 0;
+
+
+
+
+
 
       _manager.AuthRepository.Add(user);
       _manager.Save();
@@ -149,7 +153,8 @@ namespace SmartWebAppAPI.Services
     }
     public bool UpdatePassword(UpdatePasswordDto updatePasswordDto)
     {
-      var user = _manager.AuthRepository.GetOneUserbyId(updatePasswordDto.UserId,false);
+      var user = _manager.AuthRepository.GetOneUserbyEmail(updatePasswordDto.email, trackChanges: false);
+     
 
       if (user != null && VerifyPasswordHash(updatePasswordDto.OldPassword, user.PasswordHash, user.PasswordSalt))
       {

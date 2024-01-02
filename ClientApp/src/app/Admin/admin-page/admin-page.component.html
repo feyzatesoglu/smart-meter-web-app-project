@@ -8,9 +8,9 @@
           Kullanıcılar
         </button>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="#">Ücretsiz</a></li>
-          <li><a class="dropdown-item" href="#">Normal</a></li>
-          <li><a class="dropdown-item" href="#">Profesyonel</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);" (click)="filterUsers('Ücretsiz')">Ücretsiz</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);" (click)="filterUsers('Normal')">Normal</a></li>
+          <li><a class="dropdown-item" href="javascript:void(0);" (click)="filterUsers('Profesyonel')">Profesyonel</a></li>
         </ul>
         <li><a href="#addUser" routerLink="/kullanici-ekle">Kullanıcı Ekle</a></li>
         <li><a href="#editUser" routerLink="/kullanici-duzenle">Kullanıcı Düzenle</a></li>
@@ -20,24 +20,34 @@
     <section id="users">
       <h3>Kullanıcı Listesi</h3>
       <table>
-        <tr>
-          <th>ID</th>
-          <th>Ad</th>
-          <th>Soyad</th>
-          <th>E-posta</th>
-          <th>Tür</th>
-          <th>İşlemler</th>
-        </tr>
-                <!-- Buraya kullanıcı listesi gelecek -->
-        <tr>
-          <td></td> <!--id-->
-          <td></td> <!--ad-->
-          <td></td> <!--soyad-->
-          <td></td> <!--email-->
-          <td></td> <!--kullanıcı türü-->
-          <td>
-            <button type="button" class="btn btn-primary" routerLink="/kullanici-duzenle">Düzenle</button>
-            <button type="button" class="btn btn-danger">Sil</button>
-          </td>
-        </tr>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Adı</th>
+            <th>Soyadı</th>
+            <th>E-posta</th>
+            <th>Türü</th>
+            <th>İşlemler</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="users && users.length > 0; else noUsersWarning">
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.type }}</td>
+            <td>
+              <button type="button" class="btn btn-primary" routerLink="/kullanici-duzenle">Düzenle</button>
+              <button type="button" (click)="deleteUser(user.id)" class="btn btn-danger">Sil</button>
+            </td>
+          </tr>
+        </tbody>
+        <ng-template #noUsersWarning>
+          <tbody>
+            <tr>
+              <td colspan="6">Kullanıcı bulunmamaktadır.</td>
+            </tr>
+          </tbody>
+        </ng-template>
       </table>

@@ -8,66 +8,83 @@ using SmartWebAppAPI.Services;
 namespace SmartWebAppAPI.Controllers
 {
   [Route("api/[controller]")]
-    [ApiController]
-    public class AuthController : ControllerBase
+  [ApiController]
+  public class AuthController : ControllerBase
+  {
+
+    private readonly IServiceManager _manager;
+
+    public AuthController(IServiceManager manager)
     {
+      _manager = manager;
+    }
 
-        private readonly IServiceManager _manager;
-
-        public AuthController(IServiceManager manager)
-        {
-            _manager = manager;
-        }
-
-        [HttpPost("register")]
-        public IActionResult RegisterUser([FromBody] RegisterDto registerDto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState); // ModelState'deki hata detaylarını döndür
-            }
-
-            try
-            {
-                var user = _manager.AuthService.GetOneUserbyEmail(registerDto.Email, trackChanges: false);
-
-                if (user is not null)
-                {
-                    // Kullanıcı zaten varsa hata döndür
-                    return Conflict("User with this email already exists");
-                }
-                
-
-                _manager.AuthService.CreateUser(registerDto);
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.InnerException.Message);
-            }
-        }
-
-    [HttpPost("login")]
-    public IActionResult Login([FromBody] LoginDto loginDto)
+    [HttpPost("register")]
+    public IActionResult RegisterUser([FromBody] RegisterDto registerDto)
     {
-      var user =  _manager.AuthService.Login(loginDto.Email, loginDto.Password);
-
-      if (user == null)
+      if (!ModelState.IsValid)
       {
-        return Unauthorized();
+        return BadRequest(ModelState); // ModelState'deki hata detaylarını döndür
       }
 
-      // Giriş başarılıysa, kullanıcıya token veya diğer bilgileri gönderme işlemi
-      // Örnek olarak: Token oluşturup geri dönme
-      var token = GenerateToken(user); // Token oluşturma işlemi, gerçekleştirmeniz gereken bir adım
-      return Ok();
+      try
+      {
+        var user = _manager.AuthService.GetOneUserbyEmail(registerDto.Email, trackChanges: false);
+
+        if (user is not null)
+        {
+          // Kullanıcı zaten varsa hata döndür
+          return Conflict("User with this email already exists");
+        }
+        
+
+
+        _manager.AuthService.CreateUser(registerDto);
+        return Ok();
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, ex.InnerException.Message);
+      }
     }
 
-    private string GenerateToken(User user)
+    private string GenerateUserToken(User user)
+{
+    return "User"; // Kullanıcı token'ı
+}
+
+private string GenerateAdminToken(User user)
+{
+    return "Admin"; // Admin token'ı
+}
+
+[HttpPost("login")]
+public IActionResult Login([FromBody] LoginDto loginDto)
+{
+    var user = _manager.AuthService.Login(loginDto.Email, loginDto.Password);
+
+    if (user == null)
     {
-      // Token oluşturma işlemi
-      return "example_token";
+        return Unauthorized();
     }
+
+    var _user = _manager.AuthService.GetOneUserbyEmail(loginDto.Email, trackChanges: false);
+
+    if (_user.RoleId == _manager.AuthService.GetRoleIdByName("Admin"))
+    {
+        var adminToken = GenerateAdminToken(user); // Admin token'ı oluştur
+        return Ok(new { token = adminToken, userType = "Admin" }); // Admin kullanıcı için token ve userType döndür
+    }
+    else if (_user.RoleId == _manager.AuthService.GetRoleIdByName("User"))
+    {
+        var userToken = GenerateUserToken(user); // Kullanıcı token'ı oluştur
+        return Ok(new { token = userToken, userType = "User" }); // Normal kullanıcı için token ve userType döndür
+    }
+    else
+    {
+        return Unauthorized();
+    }
+}
 
 
 
@@ -99,34 +116,45 @@ namespace SmartWebAppAPI.Controllers
 
 
     [HttpPost("update-password")]
-    public IActionResult UpdatePassword(UpdatePasswordDto updatePasswordDto)
+    public IActionResult UpdatePassword([FromBody]UpdatePasswordDto updatePasswordDto)
     {
+      
       var success = _manager.AuthService.UpdatePassword(updatePasswordDto);
 
       if (success)
       {
-        return Ok("Password updated successfully.");
+        return Ok();
       }
 
-      return BadRequest("Failed to update password. Please check your credentials.");
+      return BadRequest();
     }
 
 
     //forget password
-    [HttpPost("forget-password")] 
-    public IActionResult ForgetPassword([FromBody]ForgetPasswordDto forgetPasswordDto)
+    [HttpPost("forget-password")]
+    public IActionResult ForgetPassword([FromBody] ForgetPasswordDto forgetPasswordDto)
     {
+      if (!ModelState.IsValid)
+      {
+        return BadRequest(ModelState); // ModelState'deki hata detaylarını döndür
+      }
+      if (_manager.AuthService.GetOneUserbyEmail(forgetPasswordDto.email, trackChanges: false) == null)
+      {
+        return NotFound();
+      }
+      
       _manager.AuthService.ForgetPassword(forgetPasswordDto);
-      return Ok("başarıyla değiştirildi");
+      return Ok();
+    }
+
+
   }
-
-     
-    }}
+}
 
 
 
 
-  
+
 
 
 
