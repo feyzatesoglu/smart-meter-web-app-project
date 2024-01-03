@@ -17,5 +17,15 @@ namespace SmartWebAppAPI.Repositories
       }
       return null;
     }
+
+    public string? GetTypeNameById(int typeId)
+    {
+      var role = FindByCondition(p => p.UserTypeId == typeId, false); // Rol ID'sine göre varlığı getir
+      if (role != null)
+      {
+        return role.TypeName;
+      }
+      return null;
+    }
   }
 }

@@ -26,6 +26,11 @@ void ForgetPassword(ForgetPasswordDto forgetPasswordDto);
       
 
  int? GetTypeById(string type);
+  string? GetTypeNameById(int typeId);
+  string? GetRoleNameById(int roleId);
+
+
+
 
   
 

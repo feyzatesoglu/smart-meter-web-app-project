@@ -22,18 +22,16 @@ export class LogInComponent {
           (response: any) => {
             if (response && response.token) {
               this.alertify.success("Giriş başarılı");
+              console.log(response);
+              console.log(response.token);
               // Token'i yerel depoya kaydetme veya başka işlemler yapma
               localStorage.setItem('token', response.token);
-              // Örneğin, kullanıcı türüne göre yönlendirme yapabilirsiniz
+    
+              // Kullanıcı türüne göre yönlendirme
               if (response.userType === 'Admin') {
-                
-                this.accountService.setLoggedIn(true);
-                this.accountService.setUserRole(response.userType);
-                this.router.navigate(['/admin']);
+                this.redirectToAdmin();
               } else if (response.userType === 'User') {
-                this.accountService.setLoggedIn(true);
-                this.accountService.setUserRole(response.userType);
-                this.router.navigate(['/anasayfa']);
+                this.redirectToUser();
               }
             } else {
               this.alertify.error("Geçersiz giriş bilgileri");
@@ -44,5 +42,17 @@ export class LogInComponent {
             // Hata durumunu işle, kullanıcıya bir bildirim göster veya başka bir işlem yap
           }
         );
+    }
+    
+    redirectToAdmin() {
+      this.accountService.setLoggedIn(true);
+      this.accountService.setUserRole('Admin');
+      this.router.navigate(['/admin']);
+    }
+    
+    redirectToUser() {
+      this.accountService.setLoggedIn(true);
+      this.accountService.setUserRole('User');
+      this.router.navigate(['/anasayfa']);
     }
 }

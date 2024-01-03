@@ -222,5 +222,16 @@ public int? GetTypeById(string type)
     {
         return _manager.AuthRepository.GetUsersByCondition(condition);
     }
+    
+public string? GetRoleNameById(int roleId)
+{
+  return _manager.AuthRoleRepository.GetRoleNameById(roleId);
+}
+
+public string? GetTypeNameById(int typeId){
+  return _manager.AuthTypeRepository.GetTypeNameById(typeId);
+}
+
+
   }
 }

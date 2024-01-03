@@ -23,7 +23,7 @@ namespace SmartWebAppAPI.Controllers
             {
                 return NotFound(); // Kullanıcı bulunamazsa 404 hatası gönder
             }
-
+            
             return Ok(users); // Tüm kullanıcı verilerini JSON formatında dön
         }
 

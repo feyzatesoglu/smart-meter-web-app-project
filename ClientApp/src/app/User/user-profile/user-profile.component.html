@@ -1,27 +1,20 @@
-<div class="container rounded bg-white mt-5 mb-5">
-    <div class="row">
-        <div class="col-md-3 border-right">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-              <img class="rounded-circle mt-5" width="150px" src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG-Image.png">
-              <span class="font-weight-bold">Ad Soyad</span>
-              <span class="text-black-50">mail</span>
-              <span> </span></div>
-        </div>
-<div class="col-md-5 border-right">
-  <div class="p-3 py-5">
-<div class="card">
-    <div class="card-header">
-      Hesabım
-    </div>
-    <div class="card-body">
-      <div class="profileInfos">
-      <button type="button" class="btn" routerLink="/gecmis-sorgular" >Geçmiş Sorgularım</button><br><br>
-      <button type="button" class="btn" routerLink="/sifre-degistir">Şifremi Değiştir</button><br><br>
-      <button type="button" class="btn " >Çıkış Yap</button><br><br>
-    </div>
-    </div>
+
+<div class="container">
+  <div class="profile-header">
+      <img class="profile-img" src="https://via.placeholder.com/150" alt="Profile Image">
+      <div class="profile-info">
+          <h1>{{ userProfile.firstName + " "+ userProfile.surname }}</h1>
+          <p>{{  userProfile.email}}</p>
+      </div>
+      <div class="membership-info">
+        {{  userProfile.userType}}
+      </div>
   </div>
-</div>
-</div>
-</div>
+
+  <div class="profile-actions">
+      <button type="button" class="btn btn-primary" routerLink="/gecmis-sorgular">Geçmiş Sorgularım</button><br><br>
+      <button type="button" class="btn btn-secondary" routerLink="/sifre-degistir">Şifremi Değiştir</button><br><br>
+
+      <button class="btn btn-secondary" (click)="logOut()">Çıkış Yap</button>
+  </div>
 </div>

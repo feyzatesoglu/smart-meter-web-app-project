@@ -6,5 +6,6 @@ namespace SmartWebAppAPI.Repositories
   {
 
     int? GetTypeIdByName(string typename);
+    string? GetTypeNameById(int typeId);
   }
 }
