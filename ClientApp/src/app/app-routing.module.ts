@@ -19,7 +19,7 @@ const routes: Routes = [
   {path:'anasayfa', component: HomeComponent},
   {path:'giris-yap', component: LogInComponent},
   {path:'uye-ol', component: SignUpComponent},
-  {path:'sorgula', component: QueryScreenComponent, canActivate: [AuthGuard]},
+  {path:'sorgula', component: QueryScreenComponent}, //canActivate: [AuthGuard]
   {path:'anasayfa',redirectTo:'home',pathMatch:'full'},
   {path:'iletisim', component:ContactComponent},
   {path:'profil', component:UserProfileComponent},

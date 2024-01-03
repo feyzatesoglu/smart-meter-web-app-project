@@ -8,10 +8,19 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class QueryScreenComponent implements OnInit {
   form!: FormGroup;
 
-  question1answers: string [] = ['Zorlu', 'Basit'];
-  question2answers: string [] = ['Kentsel', 'Kırsal'];
-  question3answers: string [] = ['Zorlu', 'Basit'];
-  question4answers: string [] = ['Sürekli', 'Aralıklı'];
+  question1answers: string [] = ['Dağlık', 'Kısmen Dağlık', 'Dağ yok'];
+  question2answers: string [] = ['Evet', 'Hayır'];
+  question3answers: string [] = ['Ormanın içinde', 'Ormana yakın','Değil'];
+  question4answers: string [] = ['1 kmden az', '1-5 km arası', 'Yakın değil'];
+  question5answers: string[]= ['Genellikle yağışlı', 'Nadiren Yağışlı', 'Yağış yok'];
+  question6answers: string[]= ['Şehir merkezi', 'Kırsal'];
+  question7answers: string[]= ['Genellikle tek katlı', 'Genelde 4-5 katlı binalar', 'Genelde 10 kat üzeri binalar', 'Çoğunlukla Gökdelenler'];
+  question8answers: string[]= ['Birbirine çok yakın', 'Bölgede seyrek şekilde yerleşmiş', 'Binalar arası mesafe var'];
+  question9answers: string[]= ['Çelik', 'Beton', 'Kerpiç', 'Ahşap', 'Prefabrik'];
+  question10answers: string[]= ['Az', 'Orta', 'Çok'];
+  question11answers: string[]= ['Var', 'Yok'];
+  question12answers: string[]= ['Otomatik Sayaç Okuma Sistemi', 'Akıllı Sayaç Sistemi'];
+
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -23,6 +32,15 @@ export class QueryScreenComponent implements OnInit {
       question2: ['', Validators.required],
       question3: ['', Validators.required],
       question4: ['', Validators.required],
+      question5: ['', Validators.required],
+      question6: ['', Validators.required],
+      question7: ['', Validators.required],
+      question8: ['', Validators.required],
+      question9: ['', Validators.required],
+      question10: ['', Validators.required],
+      question11: ['', Validators.required],
+      question12: ['', Validators.required],
+
     });
   }
 
