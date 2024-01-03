@@ -33,12 +33,12 @@ export class RegistrationFormComponent {
 
     // Parola tekrarı doğru mu?
     if(this.userData.password !== this.confirmPassword){
-      console.error('Passwords do not match!');
+      this.alertify.warning('Passwords do not match!');
       return;
     }
     //Accept terms işaretli mi?
     if(!this.acceptterms){
-      console.error('You must accept the terms!');
+      this.alertify.warning('You must accept the terms!');
       return;
     }
     this.accountService.registerUser(this.userData)

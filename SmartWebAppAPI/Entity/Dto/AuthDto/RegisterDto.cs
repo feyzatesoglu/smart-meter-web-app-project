@@ -17,8 +17,8 @@ namespace SmartWebAppAPI.Entity.Dto.AuthDto
 
     public string? Password { get; init; }
 
-    public string UserType { get; init; }
-    public string Role { get; init; }
+    public string? UserType { get; init; }
+    public string? Role { get; init; }
   }
 
 }
