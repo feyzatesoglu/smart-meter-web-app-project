@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {  UserLogin } from '../models/UserLogin';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
@@ -75,6 +75,14 @@ resetPassword(resetPasswordData : any): Observable<any> {
   return this.http.post<any>(`${this.apiUrl}/Auth/forget-password`,resetPasswordData); // Sunucu tarafındaki ilgili endpoint URL'si
 
   
+}
+getUserProfile() {
+  const token = localStorage.getItem('token'); // Token'ı local storage'dan al
+  console.log(token);
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  console.log(headers);
+
+  return this.http.get<any>(`${this.apiUrl}/Auth/profile`, { headers });
 }
 }
  

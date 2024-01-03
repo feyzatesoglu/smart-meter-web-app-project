@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from 'src/app/Services/account.service';
 import { AlertifyService } from 'src/app/Services/alertify.service';
 
@@ -8,11 +9,14 @@ import { AlertifyService } from 'src/app/Services/alertify.service';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent {
-
+  ngOnInit(): void {
+    this.getUserProfile();
+  }
   constructor(
     
     private accountService: AccountService ,// Inject your AccountService here
-    private alertify: AlertifyService
+    private alertify: AlertifyService,
+    private router: Router
   ){}
   updatePasswordData = {
     currentPassword: '',
@@ -31,6 +35,26 @@ export class UserProfileComponent {
         }
       );
   }
+  userProfile: any;
 
+  
+
+  logOut() {
+    this.accountService.logOut();
+    this.router.navigate(['/anasayfa']);
+    alert("Çıkış yapıldı");
+  }
+
+  getUserProfile() {
+    this.accountService.getUserProfile().subscribe(
+      (data) => {
+        this.userProfile = data;
+        console.log(this.userProfile);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
 }

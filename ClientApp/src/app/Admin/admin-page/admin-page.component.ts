@@ -24,6 +24,7 @@ export class AdminPageComponent {
     this.accountService.getUsers().subscribe(
       (data) => {
         this.users = data;
+        console.log('Users: ', this.users);
       },
       (error) => {
         this.alertify.error('Error fetching users: ' + error);
@@ -59,6 +60,7 @@ export class AdminPageComponent {
         }
       },
       (error) => {
+        this.users = [];
         console.error('Türdeki kullanıcıları getirirken hata oluştu: ', error);
       }
     );
