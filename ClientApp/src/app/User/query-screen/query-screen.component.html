@@ -7,103 +7,17 @@
     </p> 
     </div>
 <div class="container">
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <div>
-      <label for="question1">Binanın bulunduğu bölgenin arazi yoğunluğunu nasıl tanımlarsınız?</label> <br>
-      <select class="form-select form-select-md mb-9" formControlName="question1">
+<form class="form-group" #sorguForm="ngForm" (ngSubmit)="onSubmit()">
+    <div *ngFor="let grup of soruGruplari">
+      <h3>{{grup.grupAdi}}</h3>
+      <div *ngFor="let soru of grup.sorular">
+      <label>{{soru.soruMetni}}</label><br>
+      <select name="cevap{{soru.id}}" [(ngModel)]="cevaplar[soru.id]" required>
         <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question1answers" [value]="option">{{ option }}</option>
+        <option *ngFor="let cevap of soru.cevaplar" [value]="cevap.cevapMetni">{{ cevap.cevapMetni }}</option>
       </select>
     </div>
-    <br>
-    <div>
-      <label for="question2">Bina bir ovada mı konumlanıyor ?</label><br>
-      <select  class="form-select form-select-md mb-9" formControlName="question2">
-        <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question2answers" [value]="option">{{ option }}</option>
-      </select>
     </div>
-    <br>
-    <div>
-      <label for="question3"> Bina ormana yakın mı? </label><br>
-      <select class="form-select form-select-md mb-9" formControlName="question3">
-        <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question3answers" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-    <br>
-    <div>
-      <label for="question4">Binanın suya(nehir,deniz vb.) yakınlığı nedir?</label><br>
-      <select class="form-select form-select-md mb-9" formControlName="question4">
-        <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question4answers" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-    <br>
-    <div>
-      <label for="question5">Binanın bulunduğu bölgede yağış miktarı nasıl ?</label><br>
-      <select class="form-select form-select-md mb-9" formControlName="question5">
-        <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question5answers" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-    <br>
-    <div>
-      <label for="question6">Binanın bulunduğu bölge şehir merkezinde veya kırsalda mı bulunuyor?</label><br>
-      <select class="form-select form-select-md mb-9" formControlName="question6">
-        <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question6answers" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-    <br>
-    <div>
-      <label for="question7">Binanın bulunduğu bölgedeki binaların genel yüksekliği nasıl ?</label><br>
-      <select class="form-select form-select-md mb-9" formControlName="question7">
-        <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question7answers" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-    <br>
-    <div>
-      <label for="question8">Binaların bulunduğu bölgedeki binaların sıklığı nasıl?</label><br>
-      <select class="form-select form-select-md mb-9" formControlName="question8">
-        <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question8answers" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-    <br>
-    <div>
-      <label for="question9">Binanın yapı malzemesi nedir?</label><br>
-      <select class="form-select form-select-md mb-9" formControlName="question9">
-        <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question9answers" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-    <br>
-    <div>
-      <label for="question10">Binanın cam oranı nasıl?</label><br>
-      <select class="form-select form-select-md mb-9" formControlName="question10">
-        <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question10answers" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-    <br>
-    <div>
-      <label for="question11">Bina yalıtımı var mı?</label><br>
-      <select class="form-select form-select-md mb-9" formControlName="question11">
-        <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question11answers" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-    <br>
-    <div>
-      <label for="question12">Kullanılan sayaç tipi?</label><br>
-      <select class="form-select form-select-md mb-9" formControlName="question12">
-        <option value="" disabled selected>Lütfen seçiniz</option>
-        <option *ngFor="let option of question12answers" [value]="option">{{ option }}</option>
-      </select>
-    </div>
-
     <br><br>
     <div class="button">
         <input class="btn btn-success btn-lg" type="submit" value="Sorgula">
