@@ -20,6 +20,7 @@ import { AddUserComponent } from './Admin/add-user/add-user.component';
 import { EditUserComponent } from './Admin/edit-user/edit-user.component';
 import { ChangePasswordComponent } from './User/change-password/change-password.component';
 import { ForgetPasswordComponent } from './User/forget-password/forget-password.component';
+import { QueryService } from './Services/query.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import { ForgetPasswordComponent } from './User/forget-password/forget-password.
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AccountService],
+  providers: [AccountService,QueryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,6 +1,10 @@
-import { HttpClient } from '@angular/common/http';
-import { Component,OnInit } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Component,OnInit, Query } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable, catchError, throwError } from 'rxjs';
+import { QueryService } from 'src/app/Services/query.service';
+import { Recommendation } from 'src/app/models/Recommendation';
+
 @Component({
   selector: 'app-query-screen',
   templateUrl: './query-screen.component.html',
@@ -8,9 +12,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class QueryScreenComponent {
 
+
+  Data: Recommendation = {cografya:0,yerlesim:0,mimari:0,veriİletim:0};
   soruGruplari=[
 {
-    grupAdi: 'Coğrafi Özellikler',
+    grupAdi: 'cografya',
     sorular: [
     {
       id:1, 
@@ -59,7 +65,7 @@ export class QueryScreenComponent {
   ]
 },
 {
-  grupAdi:'Yerleşim Planı',
+  grupAdi:'yerlesim',
   sorular: [
     {
       id:6,
@@ -91,7 +97,7 @@ export class QueryScreenComponent {
   ]
 },
 {
-  grupAdi:'Bina Mimarisi',
+  grupAdi:'mimari',
   sorular:[
  {
   id:9,
@@ -125,7 +131,7 @@ cevaplar: [
   ]
 },
 {
-  grupAdi: 'Veri İletim Sıklığı',
+  grupAdi: 'veriİletim',
   sorular: [
     {
       id:12,
@@ -141,7 +147,7 @@ cevaplar: [
 
 cevaplar: {[key:number]:string}={};
 grupPuanlari:any = {};
-constructor(private http: HttpClient) {}
+constructor(private queryService:QueryService) {}
 onSubmit() {
   // Grup adları ve toplam puanları saklamak için bir dizi oluştur
   let grupPuanlari: any[] = [];
@@ -151,14 +157,24 @@ this.soruGruplari.forEach(grup => {
   this.grupPuanlari[grup.grupAdi] = toplamPuan; // Her bir grup için puanları sakla
 });
 
-// .NET Web API'ye cevapları gönder
-this.http.post<any>('http://localhost:7069/api/Recommendation/predict', this.grupPuanlari)
-  .subscribe(
-    (response) => {
-      console.log('API Yanıtı:', response);
-      // API'den gelen yanıtı işle
-    }
-  );
+
+this.Data.cografya=this.grupPuanlari.cografya;
+this.Data.yerlesim=this.grupPuanlari.yerlesim;
+this.Data.mimari=this.grupPuanlari.mimari;
+this.Data.veriİletim=this.grupPuanlari.veriİletim;
+console.log(this.Data);
+this.queryService.postRecommendation(this.Data).subscribe(
+  (response) => {
+    
+    console.log('API Response:', response);
+    alert(JSON.stringify(response.message));
+    // Burada API'den gelen yanıtı kullanabilirsiniz
+  },
+  (error) => {
+    console.error('API Error:', error);
+    // Hata durumunda burada işlemler yapabilirsiniz
+  }
+);
 }
 
 puanlamaYap(grup: any): number {
@@ -181,4 +197,6 @@ puanlamaYap(grup: any): number {
   return toplamPuan;
 }
 
+
 }
+

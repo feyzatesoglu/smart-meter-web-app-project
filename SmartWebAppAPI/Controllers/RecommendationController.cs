@@ -28,7 +28,8 @@ namespace SmartWebAppAPI.Controllers
       {
         return BadRequest("Prediction failed");
       }
-      return Ok(result);
+      var data = new { message = result};
+      return Ok(data);
      
     }
 
