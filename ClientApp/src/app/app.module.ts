@@ -21,6 +21,10 @@ import { EditUserComponent } from './Admin/edit-user/edit-user.component';
 import { ChangePasswordComponent } from './User/change-password/change-password.component';
 import { ForgetPasswordComponent } from './User/forget-password/forget-password.component';
 import { QueryService } from './Services/query.service';
+import { LanComponent } from './User/result-page/result-pages/lan/lan.component';
+import { WanComponent } from './User/result-page/result-pages/wan/wan.component';
+import { LpwanComponent } from './User/result-page/result-pages/lpwan/lpwan.component';
+import { SatelliteComponent } from './User/result-page/result-pages/satellite/satellite.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +41,11 @@ import { QueryService } from './Services/query.service';
     AddUserComponent,
     EditUserComponent,
     ChangePasswordComponent,
-    ForgetPasswordComponent
+    ForgetPasswordComponent,
+    LanComponent,
+    WanComponent,
+    LpwanComponent,
+    SatelliteComponent
   ],
   imports: [
     HttpClientModule,

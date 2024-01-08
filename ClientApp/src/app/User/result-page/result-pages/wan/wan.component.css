@@ -1,0 +1,28 @@
+body{
+    background-image: url('https://thinkrf.com/wp-content/uploads/2017/04/Spectrum-Regulator-Industry-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding:20px;
+}
+.card{
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+.bilgiler{
+    text-align: left;
+}
+.row{
+    display: grid;
+    grid-template-columns: 1fr 2fr; /* İki sütun oluştur: birincisi bir birim genişlikte, ikincisi iki birim genişlikte */
+    gap: 5px; /* Sütunlar arasındaki boşluk */
+  }
+  .first {
+    grid-column: 1 / 2; /* Görüntüyü ilk sütuna yerleştir */
+  }
+  
+  .second {
+    grid-column: 2 / 3; /* Paragrafı ikinci sütuna yerleştir */
+  }
