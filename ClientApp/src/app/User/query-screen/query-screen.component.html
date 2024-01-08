@@ -9,11 +9,9 @@
 <div class="container">
 <form class="form-group" #sorguForm="ngForm" (ngSubmit)="onSubmit()">
     <div *ngFor="let grup of soruGruplari">
-      <h3>{{grup.grupAdi}}</h3>
       <div *ngFor="let soru of grup.sorular">
       <label>{{soru.soruMetni}}</label><br>
-      <select name="cevap{{soru.id}}" [(ngModel)]="cevaplar[soru.id]" required>
-        <option value="" disabled selected>Lütfen seçiniz</option>
+      <select  class="form-select" aria-label="Default select example" name="cevap{{soru.id}}" [(ngModel)]="cevaplar[soru.id]" required>
         <option *ngFor="let cevap of soru.cevaplar" [value]="cevap.cevapMetni">{{ cevap.cevapMetni }}</option>
       </select>
     </div>

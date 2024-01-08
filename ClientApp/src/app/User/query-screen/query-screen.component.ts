@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, catchError, throwError } from 'rxjs';
 import { QueryService } from 'src/app/Services/query.service';
 import { Recommendation } from 'src/app/models/Recommendation';
+import { Data, Router } from '@angular/router';
 
 @Component({
   selector: 'app-query-screen',
@@ -147,14 +148,14 @@ cevaplar: [
 
 cevaplar: {[key:number]:string}={};
 grupPuanlari:any = {};
-constructor(private queryService:QueryService) {}
+constructor(private queryService:QueryService, private router:Router) {}
 onSubmit() {
-  // Grup adları ve toplam puanları saklamak için bir dizi oluştur
+  // Grup adları ve toplam puanları saklamak için bir dizi oluşturuldu
   let grupPuanlari: any[] = [];
-  // Her bir grup için puanlama yap ve grup adıyla birlikte toplam puanı ekle
+  // Her bir grup için puanlama yap ve grup adıyla birlikte toplam puanı eklendi
 this.soruGruplari.forEach(grup => {
   const toplamPuan = this.puanlamaYap(grup);
-  this.grupPuanlari[grup.grupAdi] = toplamPuan; // Her bir grup için puanları sakla
+  this.grupPuanlari[grup.grupAdi] = toplamPuan; // Her bir grup için puanları saklandı
 });
 
 
@@ -163,12 +164,24 @@ this.Data.yerlesim=this.grupPuanlari.yerlesim;
 this.Data.mimari=this.grupPuanlari.mimari;
 this.Data.veriİletim=this.grupPuanlari.veriİletim;
 console.log(this.Data);
+
 this.queryService.postRecommendation(this.Data).subscribe(
   (response) => {
-    
     console.log('API Response:', response);
-    alert(JSON.stringify(response.message));
     // Burada API'den gelen yanıtı kullanabilirsiniz
+    if(response.message=="Lan"){
+      this.router.navigate(['/sonuc/lan']);
+    }
+    else if(response.message="Wan"){
+      this.router.navigate(['sonuc/wan']);
+    }
+    else if(response.message="Lpwan"){
+      this.router.navigate(['sonuc/lpwan']);
+    }
+    else if(response.message="Satellite"){
+      this.router.navigate(['sonuc/satellite']);
+    }
+
   },
   (error) => {
     console.error('API Error:', error);
