@@ -16,7 +16,7 @@
             <li>Mail önceliği bulunmaz.</li>
             <li>Yardım merkezi erişimi</li>
           </ul>
-          <button (click)="toggleKayitFormuGoster(0)" type="button" class="free w-100 btn btn-lg btn-outline-primary">Ücretsiz Kayıt Ol</button>
+          <button (click)="toggleKayitFormuGoster(0,'Ücretsiz')" type="button" class="free w-100 btn btn-lg btn-outline-primary">Ücretsiz Kayıt Ol</button>
           <app-registration-form *ngIf="showFormService.kayitFormuGoster[0]"></app-registration-form>
         </div>
       </div>
@@ -33,7 +33,7 @@
             <li>Mailleriniz önceliklendirilir.</li>
             <li>Yardım merkezi erişimi</li>
           </ul>
-          <button type="button" (click)="toggleKayitFormuGoster(1)" class="normal w-100 btn btn-lg btn-primary">Kayıt Ol</button>
+          <button type="button" (click)="toggleKayitFormuGoster(1,'Normal')" class="normal w-100 btn btn-lg btn-primary">Kayıt Ol</button>
           <app-registration-form *ngIf="showFormService.kayitFormuGoster[1]"></app-registration-form>
         </div>
       </div>
@@ -50,7 +50,7 @@
             <li>Telefon ve mailleriniz önceliklendirilir.</li>
             <li>Yardım merkezi erişimi</li>
           </ul>
-          <button (click)="toggleKayitFormuGoster(2)" type="button" class="prof w-100 btn btn-lg btn-primary">Kayıt Ol</button>
+          <button (click)="toggleKayitFormuGoster(2,'Profesyonel')" type="button" class="prof w-100 btn btn-lg btn-primary">Kayıt Ol</button>
           <app-registration-form *ngIf="showFormService.kayitFormuGoster[2]"></app-registration-form>
         </div>
       </div>
