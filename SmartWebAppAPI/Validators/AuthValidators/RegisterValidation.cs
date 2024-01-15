@@ -26,7 +26,7 @@ namespace SmartWebAppAPI.Validators.AuthValidators
           .MinimumLength(6).WithMessage("Password must be at least 6 characters")
           .Matches("[A-Z]").WithMessage("Password must contain at least one uppercase letter")
           .Matches("[a-z]").WithMessage("Password must contain at least one lowercase letter")
-          .Matches("[+!@#$%^&*]").WithMessage("Password must contain at least one special character");
+          .Matches("[/?=+!@#$%^&*]").WithMessage("Password must contain at least one special character");
 
     }
   }

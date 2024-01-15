@@ -41,7 +41,7 @@ namespace SmartWebAppAPI.Controllers
           // Kullanıcı zaten varsa hata döndür
           return Conflict("User with this email already exists");
         }
-        
+
 
 
         _manager.AuthService.CreateUser(registerDto);
@@ -87,32 +87,51 @@ namespace SmartWebAppAPI.Controllers
     {
       var userForUpdate = _manager.AuthService.GetUserByIdForUpdate(id);
 
-      if (userForUpdate == null)
+     if (userForUpdate == null)
       {
         return NotFound();
       }
 
-      return Ok(userForUpdate);
+      var user=new UpdateDto
+      {
+        FirstName=userForUpdate.FirstName,
+        LastName=userForUpdate.LastName,
+        Email=userForUpdate.Email,
+        Role=_manager.AuthService.GetRoleNameById(userForUpdate.RoleId),
+        UserType=_manager.AuthService.GetTypeNameById(userForUpdate.UserTypeId)
+      };  
+
+
+
+      
+
+      return Ok(user);
     }
 
     [HttpPut("update-user/{id}")]
     public IActionResult UpdateUser(int id, UpdateDto updateDto)
     {
-      if (id != updateDto.Id)
+      try
       {
-        return BadRequest("ID mismatch between route and body.");
+
+        _manager.AuthService.UpdateUser(updateDto,id);
+        return Ok();
+
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, ex.InnerException.Message);
       }
 
-      _manager.AuthService.UpdateUser(updateDto);
 
-      return NoContent();
+      
     }
 
 
     [HttpPost("update-password")]
-    public IActionResult UpdatePassword([FromBody]UpdatePasswordDto updatePasswordDto)
+    public IActionResult UpdatePassword([FromBody] UpdatePasswordDto updatePasswordDto)
     {
-      
+
       var success = _manager.AuthService.UpdatePassword(updatePasswordDto);
 
       if (success)
@@ -136,7 +155,7 @@ namespace SmartWebAppAPI.Controllers
       {
         return NotFound();
       }
-      
+
       _manager.AuthService.ForgetPassword(forgetPasswordDto);
       return Ok();
     }
@@ -155,10 +174,10 @@ namespace SmartWebAppAPI.Controllers
         return NotFound("Kullanıcı bulunamadı.");
       }
 
-      var role=_manager.AuthService.GetRoleNameById(user.RoleId??0);
-      var type=_manager.AuthService.GetTypeNameById(user.UserTypeId); 
+      var role = _manager.AuthService.GetRoleNameById(user.RoleId ?? 0);
+      var type = _manager.AuthService.GetTypeNameById(user.UserTypeId);
       // Kullanıcı bilgilerini döndür
-      var userProfile = new { Id = user.Id, FirstName = user.FirstName , Surname=user.LastName,Email=user.Email,UserRole=role,UserType=type};
+      var userProfile = new { Id = user.Id, FirstName = user.FirstName, Surname = user.LastName, Email = user.Email, UserRole = role, UserType = type };
       return Ok(userProfile);
     }
   }

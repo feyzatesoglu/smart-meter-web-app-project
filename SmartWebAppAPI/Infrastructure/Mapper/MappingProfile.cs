@@ -14,6 +14,9 @@ namespace SmartWebAppAPI.Infrastructure.Mapper
       CreateMap<User, RegisterDto>().ReverseMap();
       CreateMap<User, LoginDto>();
       CreateMap<RecommendationDto, Recommendation>().ReverseMap();
+      CreateMap<User, UpdateDto>().ReverseMap();
+      CreateMap<User, GetUserForUpdateDto>().ReverseMap();
+      CreateMap<RecommendationRequestDto, Recommendation>().ReverseMap();
 
      
     }

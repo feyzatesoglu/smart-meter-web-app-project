@@ -49,6 +49,10 @@ namespace SmartWebAppAPI.Services
 
 
       _manager.AuthRepository.Add(user);
+        _manager.Save();
+      var user1=_manager.AuthRepository.GetOneUserbyEmail(registerDto.Email, trackChanges: false);
+
+      _manager.QueryCountRepository.InsertQueryCountByUserId(user1.Id, registerDto.UserType);
       _manager.Save();
     }
 
@@ -131,23 +135,29 @@ namespace SmartWebAppAPI.Services
 
 
 
-    public UpdateDto? GetUserByIdForUpdate(int id)
+    public GetUserForUpdateDto? GetUserByIdForUpdate(int id)
     {
       var user = _manager.AuthRepository.GetOneUserbyId(id, trackChanges: false);
-      return _mapper.Map<UpdateDto>(user);
+      return _mapper.Map<GetUserForUpdateDto>(user);
     }
 
-    public void UpdateUser(UpdateDto updateDto)
+    public void UpdateUser(UpdateDto updateDto ,int id)
     {
-      var user = _manager.AuthRepository.GetOneUserbyId(updateDto.Id, trackChanges: true);
+      var user= _manager.AuthRepository.GetOneUserbyId(id, trackChanges: true);
 
       if (user == null)
       {
         // User not found logic
         return;
       }
+      user.RoleId=_manager.AuthRoleRepository.GetRoleIdByName(updateDto.Role) ?? _manager.AuthRoleRepository.GetRoleIdByName("User");
+      user.UserTypeId= _manager.AuthTypeRepository.GetTypeIdByName(updateDto.UserType) ?? 0;
+      user.FirstName = updateDto.FirstName;
+      user.LastName = updateDto.LastName;
+       user.Email = updateDto.Email;
 
-      _mapper.Map(updateDto, user);
+      
+      
       _manager.AuthRepository.UpdateOneUser(user);
       _manager.Save();
     }

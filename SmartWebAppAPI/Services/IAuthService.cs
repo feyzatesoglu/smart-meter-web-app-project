@@ -17,8 +17,8 @@ namespace SmartWebAppAPI.Services
         void DeleteUser(int id);
 void ForgetPassword(ForgetPasswordDto forgetPasswordDto);
     
-    UpdateDto? GetUserByIdForUpdate(int id);
-    void UpdateUser(UpdateDto updateDto);
+    GetUserForUpdateDto? GetUserByIdForUpdate(int id);
+    void UpdateUser(UpdateDto updateDto,int id);
     bool UpdatePassword(UpdatePasswordDto updatePasswordDto);
     IQueryable<User> GetUsersByCondition(Expression<Func<User, bool>> condition);
 

@@ -6,5 +6,6 @@ namespace SmartWebAppAPI.Services
   public interface IRecommendationService
   {
     string getPrediction(RecommendationDto recommendationDto);
+    string SavePrediction(RecommendationRequestDto recommendationRequestDto);
   }
 }

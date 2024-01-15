@@ -51,6 +51,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAuthTypeRepository, AuthTypeRepository>();
+builder.Services.AddScoped<IQueryCountRepository, QueryCountRepository>();
 builder.Services.AddScoped<IAuthRoleRepository, AuthRoleRepository>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<IRecommendationService, RecommendationManager>();

@@ -20,10 +20,10 @@ namespace SmartWebAppAPI.Controllers
     }
 
     [HttpPost("predict")]
-    public IActionResult Post([FromBody] RecommendationDto recommendationDto)
+    public IActionResult Post([FromBody] RecommendationRequestDto recommendationRequestDto)
     {
 
-     var result= _serviceManager.RecommendationService.getPrediction(recommendationDto);
+     var result= _serviceManager.RecommendationService.SavePrediction(recommendationRequestDto);
       if(result == null)
       {
         return BadRequest("Prediction failed");
