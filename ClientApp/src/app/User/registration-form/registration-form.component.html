@@ -13,6 +13,9 @@
         <input type="email" name="email" placeholder="Eposta adresiniz:" [(ngModel)]="userData.email" required />
       </div>
       <div class="input-box">
+        <input type="text" name="Membership" value="Abonelik Türü: {{selectedUserType}}" >
+      </div>
+      <div class="input-box">
         <input type="password" name="password" placeholder="Şifre Oluşturunuz" [(ngModel)]="userData.password" required />
       </div>
       <div class="input-box">

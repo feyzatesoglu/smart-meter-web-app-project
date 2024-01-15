@@ -25,6 +25,8 @@ import { LanComponent } from './User/result-page/result-pages/lan/lan.component'
 import { WanComponent } from './User/result-page/result-pages/wan/wan.component';
 import { LpwanComponent } from './User/result-page/result-pages/lpwan/lpwan.component';
 import { SatelliteComponent } from './User/result-page/result-pages/satellite/satellite.component';
+import { ShowFormService } from './Services/show-form.service';
+import { UserTypeService } from './Services/userType.service';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,7 @@ import { SatelliteComponent } from './User/result-page/result-pages/satellite/sa
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [AccountService,QueryService],
+  providers: [AccountService,QueryService,ShowFormService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

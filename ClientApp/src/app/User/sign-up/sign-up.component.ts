@@ -8,7 +8,7 @@ import { ShowFormService } from 'src/app/Services/show-form.service';
 })
 export class SignUpComponent {
   constructor(public showFormService:ShowFormService){}
-  toggleKayitFormuGoster(index:number) {
-    this.showFormService.toggleKayitFormuGoster(index);
+  toggleKayitFormuGoster(index:number,userType:string) {
+    this.showFormService.toggleKayitFormuGoster(index,userType);
   }
 }

@@ -1,10 +1,10 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { AccountService } from 'src/app/Services/account.service';
 import { ShowFormService } from 'src/app/Services/show-form.service';
-
 import { UserRegistration } from 'src/app/models/UserRegistration';
 import { AlertifyService } from 'src/app/Services/alertify.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { UserTypeService } from 'src/app/Services/userType.service';
 
 @Component({
   selector: 'app-registration-form',
@@ -12,25 +12,34 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./registration-form.component.css']
 })
 export class RegistrationFormComponent {
+
   constructor(
     public showFormService: ShowFormService,
     private accountService: AccountService ,// Inject your AccountService here
-    private alertify: AlertifyService
-  ){}
+    private alertify: AlertifyService,
+    private userTypeService:UserTypeService
+  ){
+    this.userTypeService.selectedUserType$.subscribe(userType => {
+      this.selectedUserType = userType;
+      console.log(`Selected user type in registration: ${userType}`);
+    });
 
+  }
+  selectedUserType: string='';
   userData: UserRegistration = {
     firstName: '',
     lastName: '',
     email: '',
     password: '',
-    userType:"Normal",
+    userType:this.selectedUserType,
     role: "User"
   };// Kullanıcı bilgilerini tutacak nesne
 
   confirmPassword: string = ''; // Parola tekrarını tutacak değişken
   acceptterms: boolean = false; // Kullanıcı sözleşmeyi kabul etti mi?
-  onSubmit(): void {
 
+
+  onSubmit(): void {
     // Parola tekrarı doğru mu?
     if(this.userData.password !== this.confirmPassword){
       this.alertify.warning('Passwords do not match!');
