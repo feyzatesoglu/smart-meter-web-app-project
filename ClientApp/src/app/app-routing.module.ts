@@ -14,7 +14,7 @@ import { LastQueriesScreenComponent } from './User/last-queries-screen/last-quer
 import { ChangePasswordComponent } from './User/change-password/change-password.component';
 import { ForgetPasswordComponent } from './User/forget-password/forget-password.component';
 import { LanComponent } from './User/result-page/result-pages/lan/lan.component';
-import { wanchain } from 'viem/chains';
+
 import { WanComponent } from './User/result-page/result-pages/wan/wan.component';
 import { LpwanComponent } from './User/result-page/result-pages/lpwan/lpwan.component';
 import { SatelliteComponent } from './User/result-page/result-pages/satellite/satellite.component';

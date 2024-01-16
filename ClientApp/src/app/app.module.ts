@@ -28,6 +28,8 @@ import { SatelliteComponent } from './User/result-page/result-pages/satellite/sa
 import { ShowFormService } from './Services/show-form.service';
 import { UserTypeService } from './Services/userType.service';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,9 +56,10 @@ import { UserTypeService } from './Services/userType.service';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    
   ],
-  providers: [AccountService,QueryService,ShowFormService],
+  providers: [AccountService,QueryService,ShowFormService,UserTypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

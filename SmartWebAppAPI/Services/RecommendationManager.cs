@@ -55,7 +55,7 @@ namespace SmartWebAppAPI.Services
       }
       else
       {
-       _manager.QueryCountRepository.UpdateQueryCountByUserId(recommendationRequestDto.UserId);
+       _manager.UserResultRepository.InsertUserResultByUserId(recommendationRequestDto.UserId, prediction);
       _manager.Save();
       return prediction;
       }

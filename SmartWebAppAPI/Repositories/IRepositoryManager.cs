@@ -10,6 +10,8 @@ namespace SmartWebAppAPI.Repositories
 
     IQueryCountRepository QueryCountRepository { get; }
 
+    IUserResultRepository UserResultRepository { get; }
+
  
 
 

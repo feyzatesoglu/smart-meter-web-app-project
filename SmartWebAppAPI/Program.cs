@@ -53,6 +53,7 @@ builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IAuthTypeRepository, AuthTypeRepository>();
 builder.Services.AddScoped<IQueryCountRepository, QueryCountRepository>();
 builder.Services.AddScoped<IAuthRoleRepository, AuthRoleRepository>();
+builder.Services.AddScoped<IUserResultRepository, UserResultsRepository>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.AddScoped<IRecommendationService, RecommendationManager>();
 builder.Services.AddScoped<IAuthService, AuthManager>();

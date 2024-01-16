@@ -35,7 +35,7 @@ namespace SmartWebAppAPI.Repositories
 
       modelBuilder.Entity<QueryCount>().HasKey(q => q.QueryCountId);
 
-      modelBuilder.Entity<UserResults>().HasKey(u => u.UserResultsId);
+      modelBuilder.Entity<UserResults>().HasKey(u => u.UserResultId);
 
 
 

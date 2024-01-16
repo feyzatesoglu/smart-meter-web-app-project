@@ -9,15 +9,18 @@ namespace SmartWebAppAPI.Repositories
 
     private readonly IQueryCountRepository _queryCountRepository;
 
+    private readonly IUserResultRepository _userResultRepository;
+
     
 
-    public RepositoryManager(RepositoryContext repositoryContext, IAuthRepository authRepository, IAuthRoleRepository roleRepository, IAuthTypeRepository typeRepository, IQueryCountRepository queryCountRepository)
+    public RepositoryManager(RepositoryContext repositoryContext, IAuthRepository authRepository, IAuthRoleRepository roleRepository, IAuthTypeRepository typeRepository, IQueryCountRepository queryCountRepository, IUserResultRepository userResultRepository)
         {
             _repositoryContext = repositoryContext;
             _authRepository = authRepository;
         _roleRepository = roleRepository;
         _typeRepository = typeRepository;
         _queryCountRepository = queryCountRepository;
+        _userResultRepository = userResultRepository;
     }
 
     public IAuthRepository AuthRepository => _authRepository;
@@ -27,6 +30,8 @@ namespace SmartWebAppAPI.Repositories
     public IAuthTypeRepository AuthTypeRepository => _typeRepository;
 
     public IQueryCountRepository QueryCountRepository => _queryCountRepository;
+
+    public IUserResultRepository UserResultRepository => _userResultRepository;
 
     public void Save()
         {

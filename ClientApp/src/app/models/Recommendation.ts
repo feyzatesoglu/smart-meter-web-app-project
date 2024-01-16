@@ -3,5 +3,6 @@ export interface Recommendation {
     yerlesim:number;
     mimari:number;
     veriİletim:number;
+    userId:number;
 
   }

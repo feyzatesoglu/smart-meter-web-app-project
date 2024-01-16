@@ -5,6 +5,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { QueryService } from 'src/app/Services/query.service';
 import { Recommendation } from 'src/app/models/Recommendation';
 import { Data, Router } from '@angular/router';
+import { AccountService } from 'src/app/Services/account.service';
 
 @Component({
   selector: 'app-query-screen',
@@ -14,7 +15,27 @@ import { Data, Router } from '@angular/router';
 export class QueryScreenComponent {
 
 
-  Data: Recommendation = {cografya:0,yerlesim:0,mimari:0,veriİletim:0};
+  Data: Recommendation = {cografya:0,yerlesim:0,mimari:0,veriİletim:0,userId:0};
+  userProfile: any;
+
+  
+  ngOnInit(): void {
+    this.getUserProfile();
+  
+  }
+
+  getUserProfile() {
+    this.accountService.getUserProfile().subscribe(
+      (data) => {
+        this.userProfile = data;
+        console.log(this.userProfile);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   soruGruplari=[
 {
     grupAdi: 'cografya',
@@ -148,7 +169,7 @@ cevaplar: [
 
 cevaplar: {[key:number]:string}={};
 grupPuanlari:any = {};
-constructor(private queryService:QueryService, private router:Router) {}
+constructor(private queryService:QueryService, private router:Router,private accountService:AccountService) {}
 onSubmit() {
   // Grup adları ve toplam puanları saklamak için bir dizi oluşturuldu
   let grupPuanlari: any[] = [];
@@ -159,26 +180,37 @@ this.soruGruplari.forEach(grup => {
 });
 
 
+  
+
+
+
 this.Data.cografya=this.grupPuanlari.cografya;
 this.Data.yerlesim=this.grupPuanlari.yerlesim;
 this.Data.mimari=this.grupPuanlari.mimari;
 this.Data.veriİletim=this.grupPuanlari.veriİletim;
+this.Data.userId=this.userProfile.id;
+
+console.log(this.userProfile);
+
 console.log(this.Data);
 
 this.queryService.postRecommendation(this.Data).subscribe(
   (response) => {
     console.log('API Response:', response);
+    console.log(response.message);
+
+
     // Burada API'den gelen yanıtı kullanabilirsiniz
     if(response.message=="Lan"){
       this.router.navigate(['/sonuc/lan']);
     }
-    else if(response.message="Wan"){
+    else if(response.message=="Wan"){
       this.router.navigate(['sonuc/wan']);
     }
-    else if(response.message="Lpwan"){
+    else if(response.message=="Lpwan"){
       this.router.navigate(['sonuc/lpwan']);
     }
-    else if(response.message="Satellite"){
+    else if(response.message=="Satellite"){
       this.router.navigate(['sonuc/satellite']);
     }
 
