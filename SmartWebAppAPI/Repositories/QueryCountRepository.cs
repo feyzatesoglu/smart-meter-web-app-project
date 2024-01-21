@@ -9,6 +9,8 @@ namespace SmartWebAppAPI.Repositories
     {
     }
 
+    
+
     public int GetQueryCountByUserId(int userId)
     {
       
@@ -19,6 +21,8 @@ namespace SmartWebAppAPI.Repositories
         }
         return 0;
     }
+
+    
 
     public void InsertQueryCountByUserId(int userId, string userType)
     {

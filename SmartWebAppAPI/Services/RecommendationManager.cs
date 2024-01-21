@@ -1,5 +1,6 @@
 using Microsoft.ML;
 using SmartWebAppAPI.Entity.Dto.Recommendation;
+using SmartWebAppAPI.Entity.Models;
 using SmartWebAppAPI.Repositories;
 using static SmartWebAppAPI.MLModel;
 
@@ -72,5 +73,11 @@ namespace SmartWebAppAPI.Services
       
       
     }
+
+    public IQueryable<UserResults> GetUserResultsbyId(int userId){
+  return _manager.UserResultRepository.GetUserResultsbyId(userId);
+}
+
+   
   }
 }

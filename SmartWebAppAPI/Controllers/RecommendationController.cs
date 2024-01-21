@@ -23,15 +23,30 @@ namespace SmartWebAppAPI.Controllers
     public IActionResult Post([FromBody] RecommendationRequestDto recommendationRequestDto)
     {
 
-     var result= _serviceManager.RecommendationService.SavePrediction(recommendationRequestDto);
-      if(result == null)
+      var result = _serviceManager.RecommendationService.SavePrediction(recommendationRequestDto);
+      if (result == null)
       {
         return BadRequest("Prediction failed");
       }
-      var data = new { message = result};
+      var data = new { message = result };
       return Ok(data);
-     
+
     }
+
+
+    [HttpGet("getprediction/{userId}")]
+    public IActionResult GetPrediction(int userId)
+    {
+      var result = _serviceManager.RecommendationService.GetUserResultsbyId(userId  );
+      if (result == null)
+      {
+        return BadRequest("Prediction failed");
+      }
+      var data = new { message = result };
+      return Ok(data);
+
+    }
+    
 
   }
 }

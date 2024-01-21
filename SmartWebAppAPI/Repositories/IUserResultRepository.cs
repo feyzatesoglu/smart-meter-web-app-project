@@ -9,6 +9,10 @@ namespace SmartWebAppAPI.Repositories
     void InsertUserResultByUserId(int userId,string result);
  
     string GetUserResultByUserId(int userId);
+    IQueryable<UserResults> GetUserResultsbyId(int userId);
+    IQueryable<UserResults> GetUserResults();
+
+
     
 
   }

@@ -21,6 +21,20 @@ namespace SmartWebAppAPI.Repositories
         }
     }
 
+    public IQueryable<UserResults> GetUserResults()
+{
+  
+    return FindAll(false);
+}
+
+public IQueryable<UserResults> GetUserResultsbyId(int userId)
+{
+    // Burada direkt olarak sorguyu dönebilirsiniz.
+    return GetUserResults().Where(x => x.UserId == userId);
+}
+
+    
+
     public void InsertUserResultByUserId(int userId, string result)
     {
 

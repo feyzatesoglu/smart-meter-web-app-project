@@ -9,6 +9,11 @@ namespace SmartWebAppAPI.Repositories
     void UpdateQueryCountByUserId(int userId);
 
     void InsertQueryCountByUserId(int userId,string userType);
+  
+
+   
+  
+
 
   }
 }
