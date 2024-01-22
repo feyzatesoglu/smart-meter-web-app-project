@@ -87,23 +87,23 @@ namespace SmartWebAppAPI.Controllers
     {
       var userForUpdate = _manager.AuthService.GetUserByIdForUpdate(id);
 
-     if (userForUpdate == null)
+      if (userForUpdate == null)
       {
         return NotFound();
       }
 
-      var user=new UpdateDto
+      var user = new UpdateDto
       {
-        FirstName=userForUpdate.FirstName,
-        LastName=userForUpdate.LastName,
-        Email=userForUpdate.Email,
-        Role=_manager.AuthService.GetRoleNameById(userForUpdate.RoleId),
-        UserType=_manager.AuthService.GetTypeNameById(userForUpdate.UserTypeId)
-      };  
+        FirstName = userForUpdate.FirstName,
+        LastName = userForUpdate.LastName,
+        Email = userForUpdate.Email,
+        Role = _manager.AuthService.GetRoleNameById(userForUpdate.RoleId),
+        UserType = _manager.AuthService.GetTypeNameById(userForUpdate.UserTypeId)
+      };
 
 
 
-      
+
 
       return Ok(user);
     }
@@ -114,7 +114,7 @@ namespace SmartWebAppAPI.Controllers
       try
       {
 
-        _manager.AuthService.UpdateUser(updateDto,id);
+        _manager.AuthService.UpdateUser(updateDto, id);
         return Ok();
 
       }
@@ -124,7 +124,7 @@ namespace SmartWebAppAPI.Controllers
       }
 
 
-      
+
     }
 
 
@@ -182,7 +182,6 @@ namespace SmartWebAppAPI.Controllers
     }
   }
 }
-
 
 
 
