@@ -50,6 +50,31 @@ namespace SmartWebAppAPI.Repositories
 
     }
 
+
+ public void UpdateQueryCountByUserIdUserType(int userId,string userType)
+    {
+        var queryCount = FindByCondition(p => p.UserId == userId, false); // Rol adına göre varlığı getir
+        if (queryCount != null)
+        {
+            if (userType == "Ücretsiz")
+            {
+                queryCount.Count = 5;
+            }
+            else if (userType == "Normal")
+            {
+                queryCount.Count = 50;
+            }
+            else
+            {
+                queryCount.Count = 100;
+            }
+            Update(queryCount);
+        }
+       
+     
+    }
+
+
   
 
     public void UpdateQueryCountByUserId(int userId)

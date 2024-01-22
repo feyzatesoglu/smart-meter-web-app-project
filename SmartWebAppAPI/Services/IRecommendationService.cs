@@ -8,6 +8,6 @@ namespace SmartWebAppAPI.Services
   {
     string getPrediction(RecommendationDto recommendationDto);
     string SavePrediction(RecommendationRequestDto recommendationRequestDto);
-     IQueryable<UserResults> GetUserResultsbyId(int userId);
+   List<UserResults> GetUserResultsbyId(int userId);
   }
 }

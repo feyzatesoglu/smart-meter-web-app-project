@@ -49,6 +49,13 @@ login(userLogin: UserLogin): Observable<any> {
 }
 
 
+getUpdateUserById(userId: number): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/Auth/get-update-user/${userId}`);
+}
+
+updateUser(userId: number, userData: any): Observable<any> {
+  return this.http.put<any>(`${this.apiUrl}/Auth/update-user/${userId}`, userData);
+}
 
 
 logOut(){

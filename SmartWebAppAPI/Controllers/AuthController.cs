@@ -114,8 +114,15 @@ namespace SmartWebAppAPI.Controllers
       try
       {
 
-        _manager.AuthService.UpdateUser(updateDto, id);
-        return Ok();
+         _manager.AuthService.UpdateUser(updateDto, id);
+               
+        
+        
+           return Ok();
+        
+        
+
+       
 
       }
       catch (Exception ex)

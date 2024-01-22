@@ -1,3 +1,7 @@
+using Microsoft.Data.SqlClient;
+
+
+using Microsoft.EntityFrameworkCore;
 using SmartWebAppAPI.Entity.Models;
 
 namespace SmartWebAppAPI.Repositories
@@ -7,6 +11,21 @@ namespace SmartWebAppAPI.Repositories
     public UserResultsRepository(RepositoryContext context) : base(context)
     {
     }
+
+
+   
+    public List<UserResults> GetUserResultsByUserId(int userId)
+    {
+        var parameters = new[]
+        {
+            new SqlParameter("@UserId", userId)
+        };
+
+        return _context.UserResults
+            .FromSqlRaw("EXEC GetUserResultsByUserId @UserId", parameters)
+            .ToList();
+    }
+
 
     public string GetUserResultByUserId(int userId)
     {
@@ -27,11 +46,9 @@ namespace SmartWebAppAPI.Repositories
     return FindAll(false);
 }
 
-public IQueryable<UserResults> GetUserResultsbyId(int userId)
-{
-    // Burada direkt olarak sorguyu dönebilirsiniz.
-    return GetUserResults().Where(x => x.UserId == userId);
-}
+  
+
+
 
     
 
@@ -51,6 +68,6 @@ public IQueryable<UserResults> GetUserResultsbyId(int userId)
 
     }
 
-   
+ 
   }
 }

@@ -15,6 +15,7 @@ import { AdminPageComponent } from './Admin/admin-page/admin-page.component';
 import { AccountService } from './Services/account.service';
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AddUserComponent } from './Admin/add-user/add-user.component';
 import { EditUserComponent } from './Admin/edit-user/edit-user.component';
@@ -27,6 +28,7 @@ import { LpwanComponent } from './User/result-page/result-pages/lpwan/lpwan.comp
 import { SatelliteComponent } from './User/result-page/result-pages/satellite/satellite.component';
 import { ShowFormService } from './Services/show-form.service';
 import { UserTypeService } from './Services/userType.service';
+import { LastQueriesScreenComponent } from './User/last-queries-screen/last-queries-screen.component';
 
 
 
@@ -49,7 +51,8 @@ import { UserTypeService } from './Services/userType.service';
     LanComponent,
     WanComponent,
     LpwanComponent,
-    SatelliteComponent
+    SatelliteComponent,
+    LastQueriesScreenComponent,
   ],
   imports: [
     HttpClientModule,
@@ -57,6 +60,7 @@ import { UserTypeService } from './Services/userType.service';
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    CommonModule,
     
   ],
   providers: [AccountService,QueryService,ShowFormService,UserTypeService],

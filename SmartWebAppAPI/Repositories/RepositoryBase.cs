@@ -36,6 +36,8 @@ namespace SmartWebAppAPI.Repositories
                : _context.Set<T>().Where(expression).AsNoTracking().SingleOrDefault();
     }
 
+    
+
 
 
    

@@ -5,6 +5,7 @@ import { UserRegistration } from 'src/app/models/UserRegistration';
 import { AlertifyService } from 'src/app/Services/alertify.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { UserTypeService } from 'src/app/Services/userType.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration-form',
@@ -17,7 +18,9 @@ export class RegistrationFormComponent {
     public showFormService: ShowFormService,
     private accountService: AccountService ,// Inject your AccountService here
     private alertify: AlertifyService,
-    private userTypeService:UserTypeService
+    private userTypeService:UserTypeService,
+    private route: ActivatedRoute,
+    private router: Router,
   ){
     this.userTypeService.selectedUserType$.subscribe(userType => {
       this.selectedUserType = userType;
@@ -57,6 +60,9 @@ export class RegistrationFormComponent {
         response  => {
          this.alertify.success("Kayıt başarılı");
          console.log(response);
+         this.router.navigate(['/giris-yap']);
+
+         
           // Başarılı kayıt durumunda yapılacak işlemler
         },
         (error: HttpErrorResponse) => {

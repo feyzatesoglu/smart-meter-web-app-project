@@ -152,12 +152,13 @@ namespace SmartWebAppAPI.Services
       }
       user.RoleId=_manager.AuthRoleRepository.GetRoleIdByName(updateDto.Role) ?? _manager.AuthRoleRepository.GetRoleIdByName("User");
       user.UserTypeId= _manager.AuthTypeRepository.GetTypeIdByName(updateDto.UserType) ?? 0;
+     
       user.FirstName = updateDto.FirstName;
       user.LastName = updateDto.LastName;
        user.Email = updateDto.Email;
 
       
-      
+      _manager.QueryCountRepository.UpdateQueryCountByUserIdUserType(id ,updateDto.UserType);
       _manager.AuthRepository.UpdateOneUser(user);
       _manager.Save();
     }

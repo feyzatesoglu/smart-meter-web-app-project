@@ -31,7 +31,7 @@ const routes: Routes = [
   {path:'admin', component:AdminPageComponent},
   {path:'profil', component:UserProfileComponent},
   {path:'kullanici-ekle', component:AddUserComponent},
-  {path:'kullanici-duzenle', component:EditUserComponent},
+  {path:'kullanici-duzenle/:id', component:EditUserComponent},
   {path:'gecmis-sorgular', component:LastQueriesScreenComponent},
   {path:'sifre-degistir', component:ChangePasswordComponent},
   {path:'sifremi-unuttum', component:ForgetPasswordComponent},

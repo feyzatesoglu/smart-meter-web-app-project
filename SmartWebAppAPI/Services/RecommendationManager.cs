@@ -74,8 +74,8 @@ namespace SmartWebAppAPI.Services
       
     }
 
-    public IQueryable<UserResults> GetUserResultsbyId(int userId){
-  return _manager.UserResultRepository.GetUserResultsbyId(userId);
+    public List<UserResults> GetUserResultsbyId(int userId){
+     return _manager.UserResultRepository.GetUserResultsByUserId(userId);
 }
 
    
