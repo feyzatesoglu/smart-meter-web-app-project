@@ -31,7 +31,7 @@ export class RegistrationFormComponent {
     lastName: '',
     email: '',
     password: '',
-    userType:this.selectedUserType,
+    userType:'',
     role: "User"
   };// Kullanıcı bilgilerini tutacak nesne
 
@@ -50,6 +50,8 @@ export class RegistrationFormComponent {
       this.alertify.warning('You must accept the terms!');
       return;
     }
+    this.userData.userType = this.selectedUserType;
+    console.log(this.userData);
     this.accountService.registerUser(this.userData)
       .subscribe(
         response  => {
