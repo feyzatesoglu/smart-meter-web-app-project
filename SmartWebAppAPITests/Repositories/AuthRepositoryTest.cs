@@ -198,7 +198,6 @@ namespace SmartWebAppAPITests.Repositories
     {
         new User { Id = 1, FirstName = "John", LastName = "Doe", Email = "john.doe@example.com" },
         new User { Id = 2, FirstName = "Jane", LastName = "Doe", Email = "jane.doe@example.com" },
-        // Diğer kullanıcıları ekleyin
     };
 
       // Mock the GetAllUsers method
