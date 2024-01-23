@@ -28,11 +28,10 @@ namespace SmartWebAppAPITests.Controllers
       var mockServiceManager = new Mock<IServiceManager>();
       var mockAuthService = new Mock<IAuthService>();
       var mockAuthRepo = new Mock<IAuthRepository>();
-      var _mapper = new Mock<IMapper>();
       var mockConfiguration = new Mock<IConfiguration>();
       mockServiceManager.Setup(manager => manager.AuthService).Returns(mockAuthService.Object);
 
-      var authController = new AuthController(mockServiceManager.Object, _mapper.Object, mockConfiguration.Object);
+      var authController = new AuthController(mockServiceManager.Object, mockConfiguration.Object);
 
       var registerDto = new RegisterDto
       {
@@ -63,7 +62,7 @@ namespace SmartWebAppAPITests.Controllers
 
       mockServiceManager.Setup(manager => manager.AuthService).Returns(mockAuthService.Object);
 
-      var authController = new AuthController(mockServiceManager.Object, _mapper.Object, mockConfiguration.Object);
+      var authController = new AuthController(mockServiceManager.Object, mockConfiguration.Object);
 
       var loginDto = new LoginDto
       {
@@ -97,12 +96,11 @@ namespace SmartWebAppAPITests.Controllers
       // Arrange
       var mockServiceManager = new Mock<IServiceManager>();
       var mockAuthService = new Mock<IAuthService>();
-      var _mapper = new Mock<IMapper>();
       var mockConfiguration = new Mock<IConfiguration>();
 
       mockServiceManager.Setup(manager => manager.AuthService).Returns(mockAuthService.Object);
 
-      var authController = new AuthController(mockServiceManager.Object, _mapper.Object, mockConfiguration.Object);
+      var authController = new AuthController(mockServiceManager.Object, mockConfiguration.Object);
 
       var userId = 1;
       var userForUpdate = new GetUserForUpdateDto
@@ -147,12 +145,11 @@ namespace SmartWebAppAPITests.Controllers
       // Arrange
       var mockServiceManager = new Mock<IServiceManager>();
       var mockAuthService = new Mock<IAuthService>();
-      var _mapper = new Mock<IMapper>();
       var mockConfiguration = new Mock<IConfiguration>();
 
       mockServiceManager.Setup(manager => manager.AuthService).Returns(mockAuthService.Object);
 
-      var authController = new AuthController(mockServiceManager.Object, _mapper.Object, mockConfiguration.Object);
+      var authController = new AuthController(mockServiceManager.Object, mockConfiguration.Object);
 
       var updatePasswordDto = new UpdatePasswordDto
       {
@@ -176,11 +173,10 @@ namespace SmartWebAppAPITests.Controllers
       // Arrange
       var mockServiceManager = new Mock<IServiceManager>();
       var mockAuthService = new Mock<IAuthService>();
-      var _mapper = new Mock<IMapper>();
       var mockConfiguration = new Mock<IConfiguration>();
 
       mockServiceManager.Setup(manager => manager.AuthService).Returns(mockAuthService.Object);
-      var authController = new AuthController(mockServiceManager.Object, _mapper.Object, mockConfiguration.Object);
+      var authController = new AuthController(mockServiceManager.Object, mockConfiguration.Object);
 
 
       var forgetPasswordDto = new ForgetPasswordDto
@@ -203,12 +199,11 @@ namespace SmartWebAppAPITests.Controllers
       // Arrange
       var mockServiceManager = new Mock<IServiceManager>();
       var mockAuthService = new Mock<IAuthService>();
-      var _mapper = new Mock<IMapper>();
       var mockConfiguration = new Mock<IConfiguration>();
 
       mockServiceManager.Setup(manager => manager.AuthService).Returns(mockAuthService.Object);
 
-      var authController = new AuthController(mockServiceManager.Object, _mapper.Object, mockConfiguration.Object);
+      var authController = new AuthController(mockServiceManager.Object, mockConfiguration.Object);
 
       var forgetPasswordDto = new ForgetPasswordDto
       {
@@ -229,12 +224,11 @@ namespace SmartWebAppAPITests.Controllers
       // Arrange
       var mockServiceManager = new Mock<IServiceManager>();
       var mockAuthService = new Mock<IAuthService>();
-      var _mapper = new Mock<IMapper>();
       var mockConfiguration = new Mock<IConfiguration>();
 
       mockServiceManager.Setup(manager => manager.AuthService).Returns(mockAuthService.Object);
 
-      var authController = new AuthController(mockServiceManager.Object, _mapper.Object, mockConfiguration.Object);
+      var authController = new AuthController(mockServiceManager.Object, mockConfiguration.Object);
 
       var forgetPasswordDto = new ForgetPasswordDto
       {
@@ -256,12 +250,11 @@ namespace SmartWebAppAPITests.Controllers
       // Arrange
       var mockServiceManager = new Mock<IServiceManager>();
       var mockAuthService = new Mock<IAuthService>();
-      var _mapper = new Mock<IMapper>();
       var mockConfiguration = new Mock<IConfiguration>();
 
 
       mockServiceManager.Setup(manager => manager.AuthService).Returns(mockAuthService.Object);
-      var authController = new AuthController(mockServiceManager.Object, _mapper.Object, mockConfiguration.Object);
+      var authController = new AuthController(mockServiceManager.Object, mockConfiguration.Object);
   
 
       var userId = "1";
@@ -322,10 +315,9 @@ namespace SmartWebAppAPITests.Controllers
       // Arrange
       var mockServiceManager = new Mock<IServiceManager>();
       var mockAuthService = new Mock<IAuthService>();
-      var _mapper = new Mock<IMapper>();
       var mockConfiguration = new Mock<IConfiguration>();
 
-      var authController = new AuthController(mockServiceManager.Object, _mapper.Object, mockConfiguration.Object);
+      var authController = new AuthController(mockServiceManager.Object, mockConfiguration.Object);
 
       var userId = "invalidUserId";
 
