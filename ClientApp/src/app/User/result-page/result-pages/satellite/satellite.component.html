@@ -4,24 +4,10 @@
       <div class="card-body">
         <h5 class="card-title">Uydu</h5>
         <p class="card-text">Yapılan sorgulama sonucu akıllı sayacınıza en uygun mobil iletişim protokolü uydu
-          çıkmıştır.<br>
-          Aşağıda uydu protokolü ile uyumlu çalışan akıllı sayaç örneklerini inceleyerek fikir sahibi olabilirsiniz.
+          çıkmıştır.
         </p>
         <div>
         </div>
-        <a href="#" class="btn btn-primary" (click)="incele()" routerLink="/sonuc/satellite">İncele</a> <br><br>
-          <div class=" bilgiler" *ngFor="let bilgi of bilgiler">
-            <div class="row">
-              <div class="first">
-                <h5 class="info">{{ bilgi.name }}</h5>
-                <img class="img col-6" src="{{bilgi.url}}">
-              </div>
-              <div class="second">
-                <br><br>
-                <p class="info">{{ bilgi.description }}</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
