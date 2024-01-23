@@ -53,6 +53,6 @@ export class LogInComponent {
     redirectToUser() {
       this.accountService.setLoggedIn(true);
       this.accountService.setUserRole('User');
-      this.router.navigate(['/anasayfa']);
+      this.router.navigate(['/anasayfam']);
     }
 }

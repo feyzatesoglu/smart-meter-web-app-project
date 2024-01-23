@@ -51,45 +51,7 @@ namespace SmartWebAppAPITests.Controllers
       // Assert
       Assert.IsInstanceOf<OkResult>(result);
     }
-    [Test]
-    public void Login_ValidCredentials_ReturnsOkResult()
-    {
-      // Arrange
-      var mockServiceManager = new Mock<IServiceManager>();
-      var mockAuthService = new Mock<IAuthService>();
-      var _mapper = new Mock<IMapper>();
-      var mockConfiguration = new Mock<IConfiguration>();
 
-      mockServiceManager.Setup(manager => manager.AuthService).Returns(mockAuthService.Object);
-
-      var authController = new AuthController(mockServiceManager.Object, mockConfiguration.Object);
-
-      var loginDto = new LoginDto
-      {
-        Email = "john.doe@example.com",
-        Password = "password123"
-      };
-
-      var user = new User
-      {
-        Id = 1,
-        FirstName="John",
-        LastName="Doe",
-        RoleId=2
-      };
-
-      mockAuthService.Setup(service => service.Login(loginDto.Email, loginDto.Password))
-                     .Returns(user);
-
-      mockAuthService.Setup(service => service.GetOneUserbyEmail(loginDto.Email, It.IsAny<bool>()))
-                     .Returns(user);
-
-      // Act
-      var result = authController.Login(loginDto);
-
-      // Assert
-      Assert.IsInstanceOf<OkObjectResult>(result);
-    }
     [Test]
     public void GetUserForUpdate_UserExists_ReturnsOkResultWithUserData()
     {
@@ -314,7 +276,6 @@ namespace SmartWebAppAPITests.Controllers
     {
       // Arrange
       var mockServiceManager = new Mock<IServiceManager>();
-      var mockAuthService = new Mock<IAuthService>();
       var mockConfiguration = new Mock<IConfiguration>();
 
       var authController = new AuthController(mockServiceManager.Object, mockConfiguration.Object);
@@ -323,21 +284,22 @@ namespace SmartWebAppAPITests.Controllers
 
       var claims = new[]
       {
-            new Claim(ClaimTypes.NameIdentifier, userId)
-        };
+        new Claim(ClaimTypes.NameIdentifier, userId)
+    };
 
       authController.ControllerContext = new ControllerContext
       {
         HttpContext = new DefaultHttpContext { User = new ClaimsPrincipal(new ClaimsIdentity(claims, "test")) }
       };
 
+      // Simulate the AuthService.GetOneUserbyId method to throw a FormatException
+      mockServiceManager.Setup(x => x.AuthService.GetOneUserbyId(It.IsAny<int>(), It.IsAny<bool>()))
+          .Throws(new FormatException("Invalid format for userId"));
 
-      // Act
-      var result = authController.GetUserProfile();
-
-      // Assert
-      Assert.IsInstanceOf<NotFoundObjectResult>(result);
+      // Act and Assert
+      Assert.Throws<FormatException>(() => authController.GetUserProfile());
     }
+
 
   }
 

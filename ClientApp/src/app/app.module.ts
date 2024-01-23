@@ -29,6 +29,7 @@ import { SatelliteComponent } from './User/result-page/result-pages/satellite/sa
 import { ShowFormService } from './Services/show-form.service';
 import { UserTypeService } from './Services/userType.service';
 import { LastQueriesScreenComponent } from './User/last-queries-screen/last-queries-screen.component';
+import { UserHomepageComponent } from './User/user-homepage/user-homepage.component';
 
 
 
@@ -53,6 +54,7 @@ import { LastQueriesScreenComponent } from './User/last-queries-screen/last-quer
     LpwanComponent,
     SatelliteComponent,
     LastQueriesScreenComponent,
+    UserHomepageComponent
   ],
   imports: [
     HttpClientModule,
